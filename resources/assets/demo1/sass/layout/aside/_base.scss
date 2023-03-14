@@ -46,24 +46,24 @@
 
 		// Aside toggle
 		.aside-toggle {
-			color: #494b74;
+			color: black;
 		}
 
 		// Separator
 		.separator {
-			border-bottom-color: #282a3d;
+			border-bottom-color: #fff;
 		}
 
 		// Custom button
 		.btn-custom {
 			//$color, $icon-color, $border-color, $bg-color, $color-active, $icon-color-active, $border-color-active, $bg-color-active
-			@include button-custom-variant(#B5B5C3, null, null, rgba(63, 66, 84, 0.35), #B5B5C3, null, null, rgba(63, 66, 84, 0.35));
+			@include button-custom-variant(#fff, #fff, null, rgba(63, 66, 84, 0.35), #fff, #fff, null, rgba(63, 66, 84, 0.35));
 
 			.btn-icon {				
 				&,
 				i,
 				.svg-icon {
-					color: #B5B5C3;
+					color: #fff;
 				}
 			}
 		}

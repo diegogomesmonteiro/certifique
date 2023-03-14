@@ -29,14 +29,14 @@
 
         @if (theme()->getOption('layout', 'aside/minimize') === true)
             {{--begin::Aside toggler--}}
-            <div id="kt_aside_toggle" class="btn btn-icon w-auto px-0 btn-active-color-primary aside-toggle"
+            <div id="kt_aside_toggle" class="btn btn-icon w-auto px-0 btn-active-color-white aside-toggle"
                  data-kt-toggle="true"
                  data-kt-toggle-state="active"
                  data-kt-toggle-target="body"
                  data-kt-toggle-name="aside-minimize"
             >
 
-                {!! theme()->getSvgIcon("icons/duotune/arrows/arr080.svg", "svg-icon-1 rotate-180") !!}
+                {!! theme()->getSvgIcon("icons/duotune/arrows/arr080.svg", "svg-icon-white", "svg-icon-1 rotate-180") !!}
             </div>
             {{--end::Aside toggler--}}
         @endif
@@ -55,7 +55,7 @@
         <span class="btn-label">
             {{ __('Documentation') }}
         </span>
-            {!! theme()->getSvgIcon("icons/duotune/general/gen005.svg", "btn-icon svg-icon-2") !!}
+            {!! theme()->getSvgIcon("icons/duotune/general/gen005.svg", "btn-icon, svg-icon-2") !!}
         </a>
     </div>
     {{--end::Footer--}}
