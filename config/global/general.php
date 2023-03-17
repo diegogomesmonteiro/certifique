@@ -208,7 +208,7 @@ return array(
     'general' => array(
         'website'             => 'https://keenthemes.com',
         'about'               => 'https://keenthemes.com',
-        'contact'             => 'mailto:support@keenthemes.com',
+        'contact'             => 'https://ifnmg.edu.br',
         'support'             => 'https://keenthemes.com/support',
         'bootstrap-docs-link' => 'https://getbootstrap.com/docs/5.0',
         'licenses'            => 'https://keenthemes.com/licensing',
@@ -254,19 +254,19 @@ return array(
         // Engage
         'engage'        => array(
             'demos'    => array(
-                'enabled'   => true,
+                'enabled'   => false,
                 'direction' => 'end',
             ),
             'explore'  => array(
-                'enabled'   => true,
+                'enabled'   => false,
                 'direction' => 'end',
             ),
             'help'     => array(
-                'enabled'   => true,
+                'enabled'   => false,
                 'direction' => 'end',
             ),
             'purchase' => array(
-                'enabled' => true,
+                'enabled' => false,
             ),
         ),
     ),

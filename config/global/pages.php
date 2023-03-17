@@ -7,7 +7,7 @@ return array(
         'layout'      => array(
             'page-title' => array(
                 'description' => true,
-                'breadcrumb'  => false,
+                'breadcrumb'  => true,
             ),
         ),
         'assets'      => array(
@@ -99,6 +99,10 @@ return array(
                 ),
             ),
         ),
+    ),
+
+    'eventos' => array(
+        'title'  => 'Eventos',       
     ),
 
     'account' => array(

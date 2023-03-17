@@ -1,13 +1,15 @@
 <?php
 
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PagesController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\EventoController;
+use App\Http\Controllers\Logs\AuditLogsController;
+use App\Http\Controllers\Logs\SystemLogsController;
 use App\Http\Controllers\Account\SettingsController;
 use App\Http\Controllers\Auth\SocialiteLoginController;
 use App\Http\Controllers\Documentation\ReferencesController;
-use App\Http\Controllers\Logs\AuditLogsController;
-use App\Http\Controllers\Logs\SystemLogsController;
-use App\Http\Controllers\PagesController;
-use App\Http\Controllers\UsersController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,5 +67,9 @@ Route::resource('users', UsersController::class);
  * https://laravel.com/docs/8.x/socialite
  */
 Route::get('/auth/redirect/{provider}', [SocialiteLoginController::class, 'redirect']);
+
+Route::prefix('eventos')->group(function () {
+    Route::get('/', [EventoController::class, 'index'])->name('eventos.index');
+});
 
 require __DIR__.'/auth.php';
