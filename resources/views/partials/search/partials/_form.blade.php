@@ -19,25 +19,5 @@
         {!! theme()->getSvgIcon("icons/duotune/arrows/arr061.svg", "svg-icon-2 svg-icon-lg-1 me-0") !!}
     </span>
     <!--end::Reset-->
-
-    <!--begin::Toolbar-->
-    <div class="position-absolute top-50 end-0 translate-middle-y" data-kt-search-element="toolbar">
-        <!--begin::Preferences toggle-->
-        <div data-kt-search-element="preferences-show" class="btn btn-icon w-20px btn-sm btn-active-color-primary me-1" data-bs-toggle="tooltip" title="Show search preferences">
-            {!! theme()->getSvgIcon("icons/duotune/coding/cod001.svg", "svg-icon-1") !!}
-        </div>
-        <!--end::Preferences toggle-->
-
-        <!--begin::Advanced search toggle-->
-        <div data-kt-search-element="advanced-options-form-show" class="btn btn-icon w-20px btn-sm btn-active-color-primary" data-bs-toggle="tooltip" title="Show more search options">
-            {!! theme()->getSvgIcon("icons/duotune/arrows/arr072.svg", "svg-icon-2") !!}
-        </div>
-        <!--end::Advanced search toggle-->
-    </div>
-    <!--end::Toolbar-->
 </form>
 <!--end::Form-->
-
-<!--begin::Separator-->
-<div class="separator border-gray-200 mb-6"></div>
-<!--end::Separator-->

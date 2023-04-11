@@ -7,8 +7,8 @@
 
 <!--begin::Toolbar wrapper-->
 <div class="d-flex align-items-stretch flex-shrink-0">
-    
-    <!--begin::Activities-->
+
+    {{-- <!--begin::Activities-->
     <div class="d-flex align-items-center {{ $itemClass }}">
         <!--begin::Drawer toggle-->
         <div class="{{ $btnClass }}" id="kt_activities_toggle">
@@ -57,7 +57,8 @@
     <div class="d-flex align-items-center {{ $itemClass }}">
         {{ theme()->getView('partials/theme-mode/_main', compact('btnClass')) }}
     </div>
-    <!--end::Theme mode-->
+    <!--end::Theme mode--> --}}
+
 
     @if (auth()->check())
         <!--begin::User menu-->
@@ -72,7 +73,7 @@
         <!--end::User menu-->
     @endif
 
-    <!--begin::Header menu toggle-->
+    {{-- <!--begin::Header menu toggle-->
     @if(theme()->getOption('layout', 'header/left') === 'menu')
         <div class="d-flex align-items-center d-lg-none ms-2 me-n3" data-bs-toggle="tooltip" title="Show header menu">
             <div class="btn btn-icon btn-active-light-primary w-30px h-30px w-md-40px h-md-40px" id="kt_header_menu_mobile_toggle">
@@ -80,6 +81,6 @@
             </div>
         </div>
     @endif
-<!--end::Header menu toggle-->
+<!--end::Header menu toggle--> --}}
 </div>
 <!--end::Toolbar wrapper-->

@@ -102,7 +102,15 @@ return array(
     ),
 
     'eventos' => array(
-        'title'  => 'Eventos',       
+        'title'  => 'Eventos',   
+        'create' => array(
+            'title'  => 'Cadastrar Evento',
+            'layout' => array(
+                'toolbar' => array(
+                    'display' => false,
+                ),
+            )      
+        ),
     ),
 
     'account' => array(

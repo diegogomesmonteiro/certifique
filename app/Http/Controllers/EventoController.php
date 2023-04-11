@@ -38,7 +38,7 @@ class EventoController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.eventos.create');
     }
 
     /**

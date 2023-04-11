@@ -31,22 +31,17 @@
 		@endif
 
 		<!--begin::Wrapper-->
-		<div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1">
+		<div class="d-flex align-items-center justify-content-between flex-lg-grow-1">
 			<!--begin::Navbar-->
-			@if(theme()->getOption('layout', 'header/left') === 'menu')
-				<div class="d-flex align-items-stretch" id="kt_header_nav">
-                    {{ theme()->getView('layout/header/_menu') }}
+				<div class="d-none d-lg-flex d-xl-flex" id="kt_header_nav">
+                    {{ theme()->getView('layout/page-title/_default') }}
 				</div>
-			@elseif(theme()->getOption('layout', 'header/left') === 'page-title')
-				<div class="d-flex align-items-center" id="kt_header_nav">
-					{{ theme()->getView('layout/page-title/_' . theme()->getOption('layout', 'page-title/layout')) }}
-				</div>
-			@endif
+			
 			<!--end::Navbar-->
 
 			<!--begin::Topbar-->
 	        <div class="d-flex align-items-stretch flex-shrink-0">
-                {{ theme()->getView('layout/header/__topbar') }}
+               {{ theme()->getView('layout/header/__topbar') }}
 			</div>
 			<!--end::Topbar-->
 		</div>

@@ -53,6 +53,10 @@ Route::middleware('auth')->group(function () {
         Route::put('settings/password', [SettingsController::class, 'changePassword'])->name('settings.changePassword');
     });
 
+    Route::prefix('eventos')->group(function () {
+        Route::get('/create', [EventoController::class, 'create'])->name('eventos.create');
+    });
+
     // Logs pages
     Route::prefix('log')->name('log.')->group(function () {
         Route::resource('system', SystemLogsController::class)->only(['index', 'destroy']);
