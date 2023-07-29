@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreEventoRequest extends FormRequest
+class StoreAtividadeTipoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class StoreEventoRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,10 +24,7 @@ class StoreEventoRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome'=> 'required|max:100',
-            'descricao'=> 'max:300',
-            'data_inicio'=> 'required|date',
-            'data_fim'=> 'required|date|after_or_equal:data_inicio',
+            //
         ];
     }
 }

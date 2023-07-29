@@ -7,11 +7,6 @@
         });
     </script>
     
-    @php
-        $evento = $eventos[0];
-        
-    @endphp
-    
     <div class="row">
         @foreach($eventos as $evento)
         <div class="col-sm-4 mb-6">
@@ -30,13 +25,13 @@
                     <i class="bi bi-octagon-fill btn btn-icon text-primary fs-1 btn-active-light btn-active-color-primary"></i>
                 </a>
             </div>
-            <a href="#">
+            <a href="{{route('eventos.show', $evento)}}">
                 <div class="card-body">
                     <h5 class="card-title">{{$evento->nome}}</h5>
                     <p class="card-text">{{$evento->descricao}}</p>
                 </div>
                 <div class="card-footer text-muted">
-                    {{$evento->data}}
+                    {{$evento->data_inicio->format('d/m/Y')}} a {{$evento->data_fim->format('d/m/Y')}}
                 </div>
             </a>
           </div>

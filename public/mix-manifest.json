@@ -197,6 +197,8 @@
     "/demo1/js/custom/layout-builder/layout-builder.js": "/demo1/js/custom/layout-builder/layout-builder.js",
     "/demo1/js/custom/pages/careers/apply.js": "/demo1/js/custom/pages/careers/apply.js",
     "/demo1/js/custom/pages/general/contact.js": "/demo1/js/custom/pages/general/contact.js",
+    "/demo1/js/custom/pages/general/form.js": "/demo1/js/custom/pages/general/form.js",
+    "/demo1/js/custom/pages/general/formMultStep.js": "/demo1/js/custom/pages/general/formMultStep.js",
     "/demo1/js/custom/pages/pricing/general.js": "/demo1/js/custom/pages/pricing/general.js",
     "/demo1/js/custom/pages/social/feeds.js": "/demo1/js/custom/pages/social/feeds.js",
     "/demo1/js/custom/pages/user-profile/followers.js": "/demo1/js/custom/pages/user-profile/followers.js",

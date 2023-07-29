@@ -8,8 +8,10 @@ use App\Http\Controllers\EventoController;
 use App\Http\Controllers\Logs\AuditLogsController;
 use App\Http\Controllers\Logs\SystemLogsController;
 use App\Http\Controllers\Account\SettingsController;
+use App\Http\Controllers\AtividadeController;
 use App\Http\Controllers\Auth\SocialiteLoginController;
 use App\Http\Controllers\Documentation\ReferencesController;
+use App\Http\Controllers\ParticipanteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,7 +56,16 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::prefix('eventos')->group(function () {
+        Route::get('/', [EventoController::class, 'index'])->name('eventos.index');
         Route::get('/create', [EventoController::class, 'create'])->name('eventos.create');
+        Route::post('/', [EventoController::class, 'store'])->name('eventos.store');
+        Route::get('/{evento}', [EventoController::class, 'show'])->name('eventos.show');
+        Route::post('/{evento}/atividades', [AtividadeController::class, 'store'])->name('atividades.store');
+    });
+    Route::prefix('atividades')->group(function () {
+        Route::patch('/{atividade}', [AtividadeController::class, 'update'])->name('atividades.update');
+        Route::delete('/{atividade}', [AtividadeController::class, 'destroy'])->name('atividades.destroy');
+        Route::get('/{atividade}/participantes/create', [ParticipanteController::class, 'create'])->name('atividades.participantes.create');
     });
 
     // Logs pages
@@ -71,9 +82,5 @@ Route::resource('users', UsersController::class);
  * https://laravel.com/docs/8.x/socialite
  */
 Route::get('/auth/redirect/{provider}', [SocialiteLoginController::class, 'redirect']);
-
-Route::prefix('eventos')->group(function () {
-    Route::get('/', [EventoController::class, 'index'])->name('eventos.index');
-});
 
 require __DIR__.'/auth.php';
