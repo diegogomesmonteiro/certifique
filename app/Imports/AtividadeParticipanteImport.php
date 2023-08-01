@@ -16,10 +16,10 @@ class AtividadeParticipanteImport implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         return new AtividadeParticipanteTemporario([
-            'atividade' => $row['Atividade'],
-            'participante_nome' => $row['Nome do Participante'],
-            'participante_cpf' => $row['CPF'],
-            'participante_email' => $row['E-mail'],
+            'atividade' => $row['atividade'],
+            'participante_nome' => $row['nome_do_participante'],
+            'participante_cpf' => $row['cpf'],
+            'participante_email' => $row['e_mail'],
             'importacao_concluida' => '0'
         ]);
     }

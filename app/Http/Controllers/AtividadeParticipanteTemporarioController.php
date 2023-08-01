@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\UploadedFile;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Storage;
 use App\Imports\AtividadeParticipanteImport;
 use App\Models\AtividadeParticipanteTemporario;
 use App\Http\Requests\StoreAtividadeParticipanteTemporarioRequest;
@@ -88,7 +90,10 @@ class AtividadeParticipanteTemporarioController extends Controller
 
     public function import() 
     {
-        Excel::import(new AtividadeParticipanteImport, 'participantes.xlsx');
+        $file = request()->file('file');
+        $path = $file->store('temporario');
+        Excel::import(new AtividadeParticipanteImport, $path);
+        Storage::delete($path);
         return redirect('/')->with('success', 'Importação concluída.');
     }
 
