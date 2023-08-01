@@ -15,9 +15,10 @@
                         <div>
                             <a href="">Um modelo do arquivo ".csv" pode ser baixado clicando aqui.</a>
                         </div>
-                        <form action="" method="POST">
-                            <input type="file" class="btn-check" name="radio_buttons_2" value="apps" checked="checked"  id="kt_radio_buttons_2_option_1"/>
-                            <label class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center mb-5" for="kt_radio_buttons_2_option_1">
+                        <form action="{{route("participantes.import")}}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <input type="file" class="btn-check" name="file" required  id="btn-participantes-import"/>
+                            <label class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center mb-5" for="btn-participantes-import">
                                 <i class="ki-duotone ki-setting-2 fs me-4">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
                                         <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>

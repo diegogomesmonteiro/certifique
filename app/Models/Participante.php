@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Perfil;
 use App\Models\Atividade;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -20,6 +21,11 @@ class Participante extends Model
     public function atividades()
     {
         return $this->belongsToMany(Atividade::class);
+    }
+
+    public function perfils()
+    {
+        return $this->belongsToMany(Perfil::class);
     }
 
 }

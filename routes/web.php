@@ -9,6 +9,7 @@ use App\Http\Controllers\Logs\AuditLogsController;
 use App\Http\Controllers\Logs\SystemLogsController;
 use App\Http\Controllers\Account\SettingsController;
 use App\Http\Controllers\AtividadeController;
+use App\Http\Controllers\AtividadeParticipanteTemporarioController;
 use App\Http\Controllers\Auth\SocialiteLoginController;
 use App\Http\Controllers\Documentation\ReferencesController;
 use App\Http\Controllers\ParticipanteController;
@@ -66,6 +67,9 @@ Route::middleware('auth')->group(function () {
         Route::patch('/{atividade}', [AtividadeController::class, 'update'])->name('atividades.update');
         Route::delete('/{atividade}', [AtividadeController::class, 'destroy'])->name('atividades.destroy');
         Route::get('/{atividade}/participantes/create', [ParticipanteController::class, 'create'])->name('atividades.participantes.create');
+    });
+    Route::prefix('participantes')->group(function () {
+        Route::post('/import', [AtividadeParticipanteTemporarioController::class, 'import'])->name('participantes.import');
     });
 
     // Logs pages
