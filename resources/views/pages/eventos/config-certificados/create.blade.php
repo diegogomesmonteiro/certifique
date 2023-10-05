@@ -34,16 +34,17 @@
                         </div>
                     </div>
                     <div class="row mb-4">
-                        <div class="text-center">
-                            <p class="form-label" for="nome">Utilize essas TAGs para adicionar partes
-                                textuais dinâmicas</p>
-                            <div class="p-2 bg-gray-300 align-items-center">
-                                <span class="badge badge-light-success">[participante.nome]</span>
-                                <span class="badge badge-light-success">[evento.nome]</span>
-                                <span class="badge badge-light-success">[evento.inicio]</span>
-                                <span class="badge badge-light-success">[evento.fim]</span>
-                                <span class="badge badge-light-success">[evento.carga_horaria]</span>
-                            </div>
+                        <div class="col-6">
+                            <label class="form-label" for="nome">Nome do certificado</label>
+                            <input type="text" class="form-control form-control-solid" id="nome" name="nome"
+                                placeholder="Nome do certificado" value="{{ old('nome') }}" required />
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label" for="nome">Imagem de fundo</label>
+                            <input type="file" class="form-control form-control-solid" id="imagem" name="imagem"
+                                placeholder="" value="{{ old('imagem') }}" />
+                            <span>*Caso não escolha a imagem de fundo, será utilizada a imagem padrão do
+                                sistema.</span>
                         </div>
                     </div>
                 </form>
