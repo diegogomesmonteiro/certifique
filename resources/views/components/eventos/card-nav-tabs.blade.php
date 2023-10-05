@@ -20,10 +20,11 @@
                     </li>
                 @endif
             </ul>
+            
             <div class="tab-content" id="myTabContent">
                 <x-eventos.tab-atividades :ativo="$ativo" :atividades='$atividades' />
                 <x-eventos.tab-participantes :ativo="$ativo" :atividades='$atividades' />
-                <x-eventos.tab-config-certificados :ativo="$ativo" :atividades='$atividades' />
+                <x-eventos.tab-config-certificados :ativo="$ativo" :evento="$atividades[0]->evento" />
             </div>
         </div>
     </div>

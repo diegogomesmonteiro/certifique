@@ -8,12 +8,13 @@ class TabConfigCertificados extends Component
 {
     
     public $ativo; 
+    public $evento;
 
-    public function __construct($ativo=null)
+    public function __construct($ativo=null, $evento=null)
     {
         $this->ativo = $ativo;
+        $this->evento = $evento;
     }
-
     /**
      * Get the view / contents that represent the component.
      *
