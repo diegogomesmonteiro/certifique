@@ -88,7 +88,7 @@ var KTGeneralSweetAlertDemos = function() {
                 buttonsStyling: false,
                 confirmButtonText: "Ok, got it!",
                 customClass: {
-                    confirmButton: "btn btn-danger"
+                    confirmButton: "btn btn-sm btn-danger"
                 }
             });
         });

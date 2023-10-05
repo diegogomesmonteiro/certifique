@@ -9,9 +9,21 @@ class Evento extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'nome', 
+        'tipo',
+        'nome',
         'descricao', 
-        'data', 
-        'hora'
+        'data_inicio', 
+        'data_fim',
     ];
+
+    protected $casts = [
+        'data_inicio' => 'datetime:d/m/Y',
+        'data_fim' => 'datetime:d/m/Y',
+    ];
+
+    public function atividades()
+    {
+        return $this->hasMany(Atividade::class)->orderBy('data_inicio', 'asc');
+    }
+
 }

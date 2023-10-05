@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Perfil;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,6 +16,10 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UsersSeeder::class,
+            AtividadeTipoSeeder::class,
+            PerfilSeeder::class,
+            EventoSeeder::class,
+            AtividadeSeeder::class,
             // PermissionsSeeder::class,
             // RolesSeeder::class,
         ]);

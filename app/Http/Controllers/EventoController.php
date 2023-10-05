@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Evento;
+use Illuminate\Http\Request;
+use App\Models\AtividadeTipo;
+
 use App\Http\Requests\StoreEventoRequest;
 use App\Http\Requests\UpdateEventoRequest;
 
@@ -15,19 +18,7 @@ class EventoController extends Controller
      */
     public function index()
     {
-        $evento1 = new Evento();
-        $evento1->id = 1;
-        $evento1->nome = 'Evento 1';
-        $evento1->descricao = 'Descrição do evento 1';
-        $evento1->data = '2021-01-01';
-        $evento1->hora = '10:00:00';
-        $evento2 = new Evento();
-        $evento2->id = 2;
-        $evento2->nome = 'Evento 2';
-        $evento2->descricao = 'Descrição do evento 2';
-        $evento2->data = '2021-01-02';
-        $evento2->hora = '11:00:00';
-        $eventos = [$evento1, $evento2];
+        $eventos = Evento::orderByDesc('data_inicio')->get();
         return view('pages.eventos.index',['eventos'=>$eventos]);
     }
 
@@ -49,7 +40,13 @@ class EventoController extends Controller
      */
     public function store(StoreEventoRequest $request)
     {
-        //
+        $evento = Evento::create($request->validated());
+        if ($evento) {
+            session()->flash('success', 'Cadastro realizado com sucesso!');
+        } else {
+            session()->flash('danger', 'Erro ao realizar cadastro!');
+        }
+        return redirect()->route('eventos.index');
     }
 
     /**
@@ -60,7 +57,8 @@ class EventoController extends Controller
      */
     public function show(Evento $evento)
     {
-        //
+        $atividadeTipos = AtividadeTipo::orderBy('nome')->get();
+        return view('pages.eventos.show',['evento'=>$evento, 'atividadeTipos'=>$atividadeTipos]);
     }
 
     /**

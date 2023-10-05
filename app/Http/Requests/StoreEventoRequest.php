@@ -13,7 +13,7 @@ class StoreEventoRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class StoreEventoRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nome'=> 'required|max:100',
+            'descricao'=> 'max:300',
+            'data_inicio'=> 'required|date',
+            'data_fim'=> 'required|date|after_or_equal:data_inicio',
         ];
     }
 }

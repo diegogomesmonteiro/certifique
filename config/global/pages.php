@@ -1,4 +1,5 @@
 <?php
+
 return array(
     '' => array(
         'title'       => 'Dashboard',
@@ -17,7 +18,7 @@ return array(
         ),
     ),
 
-    'login'           => array(
+    'login'      => array(
         'title'  => 'Login',
         'assets' => array(
             'custom' => array(
@@ -102,16 +103,92 @@ return array(
     ),
 
     'eventos' => array(
-        'title'  => 'Eventos',   
+        'title'  => 'Eventos',
         'create' => array(
             'title'  => 'Cadastrar Evento',
             'layout' => array(
                 'toolbar' => array(
                     'display' => false,
                 ),
-            )      
+            ),
+            'assets' => array(
+                'custom' => array(
+                    'js' => array(
+                        'js\custom\pages\general\form.js',
+                        'js\custom\pages\general\formMultStep.js',
+                    ),
+                ),
+            ),             
+        ),
+        '*' => array(
+            'layout' => array(
+                'toolbar' => array(
+                    'display' => false,
+                ),
+            ),
+            'assets' => array(
+                'custom' => array(
+                    'js' => array(
+                        'js\custom\pages\general\form.js',
+                        //'js\custom\pages\general\formMultStep.js',
+                    ),
+                ),
+            ), 
         ),
     ),
+
+    'atividades' => array(
+        'title'  => 'Atividades',
+        // 'create' => array(
+        //     'title'  => 'Cadastrar Atividade',
+        //     'layout' => array(
+        //         'toolbar' => array(
+        //             'display' => false,
+        //         ),
+        //     ),
+        //     'assets' => array(
+        //         'custom' => array(
+        //             'js' => array(
+        //                 'js\custom\pages\general\form.js',
+        //                 'js\custom\pages\general\formMultStep.js',
+        //             ),
+        //         ),
+        //     ),             
+        // ),
+        '6' => array(
+            'title'  => 'Detalhes da Atividades',
+            'layout' => array(
+                'toolbar' => array(
+                    'display' => true,
+                ),
+            ),
+            'assets' => array(
+                'custom' => array(
+                    'js' => array(
+                        'js\custom\pages\general\form.js',
+                        //'js\custom\pages\general\formMultStep.js',
+                    ),
+                ),
+            ),
+
+            'participantes' => array(
+                'title'  => 'Detalhes do Evento',
+                'layout' => array(
+                    'toolbar' => array(
+                        'display' => false,
+                    ),
+                ),
+                'assets' => array(
+                    'custom' => array(
+                        'js' => array(
+                            'js\custom\pages\general\form.js',
+                            //'js\custom\pages\general\formMultStep.js',
+                        ),
+                    ),
+                ),
+            ),
+        ),
+    ),    
 
     'account' => array(
         'overview' => array(

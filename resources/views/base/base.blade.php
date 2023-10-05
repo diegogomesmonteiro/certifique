@@ -70,7 +70,7 @@ License: {{ theme()->getOption('product', 'license') }}
     {{ theme()->getView('layout/_loader') }}
 @endif
 
-@yield('content')
+    @yield('content')
 
 {{-- begin::Javascript --}}
 @if (theme()->hasOption('assets', 'js'))

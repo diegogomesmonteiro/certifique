@@ -8,8 +8,11 @@ use App\Http\Controllers\EventoController;
 use App\Http\Controllers\Logs\AuditLogsController;
 use App\Http\Controllers\Logs\SystemLogsController;
 use App\Http\Controllers\Account\SettingsController;
+use App\Http\Controllers\AtividadeController;
+use App\Http\Controllers\AtividadeParticipantesController;
 use App\Http\Controllers\Auth\SocialiteLoginController;
 use App\Http\Controllers\Documentation\ReferencesController;
+use App\Http\Controllers\ParticipanteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,7 +57,24 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::prefix('eventos')->group(function () {
+        Route::get('/', [EventoController::class, 'index'])->name('eventos.index');
         Route::get('/create', [EventoController::class, 'create'])->name('eventos.create');
+        Route::post('/', [EventoController::class, 'store'])->name('eventos.store');
+        Route::get('/{evento}', [EventoController::class, 'show'])->name('eventos.show');
+        Route::post('/{evento}/atividades', [AtividadeController::class, 'store'])->name('atividades.store');
+    });
+    Route::prefix('atividades')->group(function () {
+        Route::patch('/{atividade}', [AtividadeController::class, 'update'])->name('atividades.update');
+        Route::delete('/{atividade}', [AtividadeController::class, 'destroy'])->name('atividades.destroy');
+        Route::get('/{atividade}/participantes/create', [ParticipanteController::class, 'create'])->name('atividades-participantes.create');
+    });
+    Route::prefix('atividade-participantes')->group(function () {
+        Route::post('/import', [AtividadeParticipantesController::class, 'import'])->name('atividade-participantes.import');
+        Route::post('/create', [AtividadeParticipantesController::class, 'store'])->name('atividade-participantes.store');
+        Route::delete('/atividade/{atividade}/participante/{participante}', [AtividadeParticipantesController::class, 'destroy'])->name('atividade-participantes.destroy');
+    });
+    Route::prefix('participantes')->group(function () {
+        Route::patch('/{participante}', [ParticipanteController::class, 'update'])->name('participantes.update');
     });
 
     // Logs pages
@@ -72,8 +92,4 @@ Route::resource('users', UsersController::class);
  */
 Route::get('/auth/redirect/{provider}', [SocialiteLoginController::class, 'redirect']);
 
-Route::prefix('eventos')->group(function () {
-    Route::get('/', [EventoController::class, 'index'])->name('eventos.index');
-});
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
