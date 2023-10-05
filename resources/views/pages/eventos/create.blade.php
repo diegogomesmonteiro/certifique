@@ -137,8 +137,7 @@
                 <!--begin::Content-->
                 <div class="flex-row-fluid">
                     <!--begin::Form-->
-                    <form class="form w-lg mx-auto" method="POST" 
-                    action="{{route('eventos.store')}}">
+                    <form class="form w-lg mx-auto" method="POST" action="{{ route('eventos.store') }}">
                         @csrf
                         <!--begin::Group-->
                         <div class="mb-5">
@@ -148,7 +147,7 @@
                                 <div class="fv-row mb-5">
                                     <!--begin::Option-->
                                     <input type="radio" class="btn-check" name="tipo" value="Atividade"
-                                    id="radio-atividade" checked/>
+                                        id="radio-atividade" checked />
                                     <label
                                         class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center"
                                         for="radio-atividade">
@@ -167,7 +166,7 @@
                                 <div class="fv-row mb-5">
                                     <!--begin::Option-->
                                     <input type="radio" class="btn-check" name="tipo" value="Evento"
-                                    id="radio-evento" />
+                                        id="radio-evento" />
                                     <label
                                         class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center"
                                         for="radio-evento">
@@ -187,7 +186,7 @@
                                 <div class="fv-row mb-5">
                                     <!--begin::Option-->
                                     <input type="radio" class="btn-check" name="tipo" value="Projeto"
-                                    id="radio-projeto" />
+                                        id="radio-projeto" />
                                     <label
                                         class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center"
                                         for="radio-projeto">
@@ -215,8 +214,8 @@
                                     <!--end::Label-->
 
                                     <!--begin::Input-->
-                                    <input type="text" class="form-control form-control-solid" 
-                                    id="nome" name="nome" placeholder="" value="{{ old('nome') }}" required/>
+                                    <input type="text" class="form-control form-control-solid" id="nome"
+                                        name="nome" placeholder="" value="{{ old('nome') }}" required />
                                     <!--end::Input-->
                                 </div>
                                 <!--end::Input group-->
@@ -228,9 +227,8 @@
                                     <!--end::Label-->
 
                                     <!--begin::Input-->
-                                    <textarea class="form-control form-control-solid" 
-                                    rows="3" maxlength="300" id="descricao" name="descricao" placeholder="" 
-                                    value="{{ old('descricao') }}"></textarea>
+                                    <textarea class="form-control form-control-solid" rows="3" maxlength="300" id="descricao" name="descricao"
+                                        placeholder="" value="{{ old('descricao') }}"></textarea>
                                     <!--end::Input-->
                                 </div>
                                 <!--end::Input group-->
@@ -241,29 +239,28 @@
                                         <!--begin::Label-->
                                         <label class="form-label" for="data_inicio">Início</label>
                                         <!--end::Label-->
-    
+
                                         <!--begin::Input-->
-                                        <input type="date" class="form-control form-control-solid"
-                                        id="data_inicio" name="data_inicio" placeholder="" 
-                                        value="{{ old('data_inicio') }}" required/>
+                                        <input type="date" class="form-control form-control-solid" id="data_inicio"
+                                            name="data_inicio" placeholder="" value="{{ old('data_inicio') }}"
+                                            required />
                                         <!--end::Input-->
                                     </div>
                                     <div>
                                         <!--begin::Label-->
                                         <label class="form-label" for="data_fim">Fim</label>
                                         <!--end::Label-->
-    
+
                                         <!--begin::Input-->
-                                        <input type="date" class="form-control form-control-solid"
-                                        id="data_fim" name="data_fim" placeholder="" 
-                                        value="{{ old('data_fim') }}" required/>
+                                        <input type="date" class="form-control form-control-solid" id="data_fim"
+                                            name="data_fim" placeholder="" value="{{ old('data_fim') }}" required />
                                         <!--end::Input-->
                                     </div>
 
                                 </div>
                                 <!--end::Input group-->
 
-{{--                                 
+                                {{--                                 
 
 
 
@@ -390,11 +387,12 @@
 
                             <!--begin::Wrapper-->
                             <div>
-                                <a href="{{route('eventos.index')}}" class="btn btn-sm btn-danger">
+                                <a href="{{ route('eventos.index') }}" class="btn btn-sm btn-danger">
                                     Cancelar
                                 </a>
-                                
-                                <button type="submit" class="btn btn-sm btn-primary" data-kt-stepper-action="submit">
+
+                                <button type="submit" class="btn btn-sm btn-primary"
+                                    data-kt-stepper-action="submit">
                                     <span class="indicator-label">
                                         Salvar
                                     </span>
@@ -403,7 +401,7 @@
                                             class="spinner-border spinner-border-sm align-middle ms-2"></span>
                                     </span>
                                 </button>
-                                
+
                                 <button type="button" class="btn btn-sm btn-primary" data-kt-stepper-action="next">
                                     Avançar
                                 </button>

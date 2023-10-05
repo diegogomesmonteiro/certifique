@@ -12,15 +12,15 @@
                 @method('PATCH')
                 <div class="modal-body">
                     <div class="mb-3">
-                        <input type="text" class="form-control" id="editar_nome_participante" name="nome"
+                        <input type="text" class="form-control form-control-solid" id="editar_nome_participante" name="nome"
                             placeholder="Nome do participante" required>
                     </div>
                     <div class="mb-3">
-                        <input type="text" class="form-control" id="editar_cpf" name="cpf" placeholder="CPF"
+                        <input type="text" class="form-control form-control-solid" id="editar_cpf" name="cpf" placeholder="CPF"
                             required>
                     </div>
                     <div class="mb-3">
-                        <input type="email" class="form-control" id="editar_email" name="email" placeholder="E-mail"
+                        <input type="email" class="form-control form-control-solid" id="editar_email" name="email" placeholder="E-mail"
                             required>
                     </div>
                 </div>

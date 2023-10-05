@@ -10,7 +10,7 @@
                 <div class="modal-body">
                     @csrf
                     <div class="mb-3">
-                        <select class="form-select" name="atividade_id" id="atividade_id" required>
+                        <select class="form-select form-select-solid" name="atividade_id" id="atividade_id" required>
                             <option selected disabled>Atividade</option>  
                             @foreach ($evento->atividades as $atividade)
                             <option value={{$atividade->id}}>{{$atividade->nome}}</option>
@@ -18,15 +18,15 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <input type="text" class="form-control" id="nome" name="nome" 
+                        <input type="text" class="form-control form-control-solid" id="nome" name="nome" 
                             placeholder="Nome"  required>
                     </div>
                     <div class="mb-3">
-                        <input type="text" class="form-control" id="cpf" name="cpf" 
+                        <input type="text" class="form-control form-control-solid" id="cpf" name="cpf" 
                             placeholder="CPF"  required>
                     </div>
                     <div class="mb-3">
-                        <input type="email" class="form-control" id="email" name="email" 
+                        <input type="email" class="form-control form-control-solid" id="email" name="email" 
                             placeholder="E-mail"  required>
                     </div>
                     <div class="mb-3">
