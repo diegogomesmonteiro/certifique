@@ -104,7 +104,6 @@ return array(
 
     'eventos' => array(
         'title'  => 'Eventos',
-        
         'create' => array(
             'title'  => 'Cadastrar Evento',
             'layout' => array(
@@ -121,8 +120,7 @@ return array(
                 ),
             ),             
         ),
-        '3' => array(
-            'title'  => 'Detalhes do Evento',
+        '*' => array(
             'layout' => array(
                 'toolbar' => array(
                     'display' => false,
@@ -158,7 +156,7 @@ return array(
         //     ),             
         // ),
         '6' => array(
-            'title'  => 'Detalhes da Atividade',
+            'title'  => 'Detalhes da Atividades',
             'layout' => array(
                 'toolbar' => array(
                     'display' => true,

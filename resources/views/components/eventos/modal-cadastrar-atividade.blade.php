@@ -44,8 +44,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a class="btn btn-danger" data-bs-dismiss="modal">Cancelar</a>
-                    <button type="submit"  class="btn btn-primary">Salvar</button>
+                    <a class="btn btn-sm btn-danger" data-bs-dismiss="modal">Cancelar</a>
+                    <button type="submit"  class="btn btn-sm btn-primary">Salvar</button>
                 </div>
             </form>
         </div>

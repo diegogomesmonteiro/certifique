@@ -2,17 +2,18 @@
 
 namespace App\View\Components\Eventos;
 
-use App\Models\Atividade;
 use Illuminate\View\Component;
 
 class TabAtividades extends Component
 {
     
     public $atividades;
+    public $ativo;
 
-    public function __construct($atividades)
+    public function __construct($atividades, $ativo=null)
     {
         $this->atividades = $atividades;
+        $this->ativo = $ativo;
     }
 
     /**

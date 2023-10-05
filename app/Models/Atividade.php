@@ -31,17 +31,17 @@ class Atividade extends Model
 
     public function participantes()
     {
-        return $this->belongsToMany(Participante::class);
+        return $this->belongsToMany(Participante::class, 'atividade_participantes')
+            ->distinct('participantes.id')->orderBy('nome');
     }
 
     public function perfils()
     {
-        return $this->belongsToMany(Perfil::class);
+        return $this->belongsToMany(Perfil::class, 'atividade_participantes')->orderBy('nome');
     }
 
     public function atividadeTipo()
     {
-        return $this->belongsTo(AtividadeTipo::class);
+        return $this->belongsTo(AtividadeTipo::class)->orderBy('nome');
     }
-
 }

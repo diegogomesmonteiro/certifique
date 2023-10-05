@@ -7,7 +7,7 @@ use App\Models\Atividade;
 use App\Models\AtividadeTipo;
 use Illuminate\View\Component;
 
-class ModalAlterarAtividade extends Component
+class ModalEditarAtividade extends Component
 {
     public Evento $evento;
     public $atividadeTipos;
@@ -25,6 +25,6 @@ class ModalAlterarAtividade extends Component
      */
     public function render()
     {
-        return view('components.eventos.modal-alterar-atividade');
+        return view('components.eventos.modal-editar-atividade');
     }
 }

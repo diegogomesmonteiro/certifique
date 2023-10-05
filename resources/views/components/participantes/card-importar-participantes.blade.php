@@ -257,7 +257,7 @@
 
                         <!--begin::Wrapper-->
                         <div>
-                            <button type="button" class="btn btn-primary" data-kt-stepper-action="submit">
+                            <button type="button" class="btn btn-sm btn-primary" data-kt-stepper-action="submit">
                                 <span class="indicator-label">
                                     Submit
                                 </span>
@@ -266,7 +266,7 @@
                                 </span>
                             </button>
 
-                            <button type="button" class="btn btn-primary" data-kt-stepper-action="next">
+                            <button type="button" class="btn btn-sm btn-primary" data-kt-stepper-action="next">
                                 Continue
                             </button>
                         </div>

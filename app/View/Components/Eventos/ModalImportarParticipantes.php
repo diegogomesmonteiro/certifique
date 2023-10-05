@@ -4,17 +4,16 @@ namespace App\View\Components\Eventos;
 
 use Illuminate\View\Component;
 
-class TabParticipantes extends Component
+class ModalImportarParticipantes extends Component
 {
     
-    public $ativo;
-    public $atividades;
+    public $evento;
 
-    public function __construct($ativo=null, $atividades=null)
+    public function __construct($evento)
     {
-        $this->ativo = $ativo;
-        $this->atividades = $atividades;
+        $this->evento = $evento;
     }
+
     /**
      * Get the view / contents that represent the component.
      *
@@ -22,6 +21,6 @@ class TabParticipantes extends Component
      */
     public function render()
     {
-        return view('components.eventos.tab-participantes');
+        return view('components.eventos.modal-importar-participantes');
     }
 }

@@ -7,10 +7,12 @@ use Illuminate\View\Component;
 class CardNavTabs extends Component
 {
     public $atividades;
+    public $ativo;
 
-    public function __construct($atividades)
+    public function __construct($atividades, String $ativo=null)
     {
         $this->atividades = $atividades;
+        $this->ativo = $ativo;
     }
 
 

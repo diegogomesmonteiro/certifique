@@ -105,7 +105,7 @@
             <!--end::Formating toggle-->
 
             <!--begin::Submit-->
-            <button class="btn btn-primary fw-bolder" data-kt-action="submit">Submit</button>
+            <button class="btn btn-sm btn-primary fw-bolder" data-kt-action="submit">Submit</button>
             <!--end::Submit-->
         </div>
         <!--end::Action-->

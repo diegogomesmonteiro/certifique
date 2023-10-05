@@ -20,12 +20,17 @@ class Participante extends Model
 
     public function atividades()
     {
-        return $this->belongsToMany(Atividade::class);
+        return $this->belongsToMany(Atividade::class, 'atividade_participantes');
     }
 
     public function perfils()
     {
-        return $this->belongsToMany(Perfil::class);
+        return $this->belongsToMany(Perfil::class, 'atividade_participantes');
+    }
+    
+    public function perfilsNaAtividade(Atividade $atividade)
+    {
+        return $this->perfils()->where('atividade_id', $atividade->id)->get();
     }
 
 }

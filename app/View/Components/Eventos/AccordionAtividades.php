@@ -2,19 +2,18 @@
 
 namespace App\View\Components\Eventos;
 
+use App\Models\Atividade;
 use Illuminate\View\Component;
 
-class TabParticipantes extends Component
+class AccordionAtividades extends Component
 {
-    
-    public $ativo;
     public $atividades;
 
-    public function __construct($ativo=null, $atividades=null)
+    public function __construct($atividades)
     {
-        $this->ativo = $ativo;
         $this->atividades = $atividades;
     }
+
     /**
      * Get the view / contents that represent the component.
      *
@@ -22,6 +21,6 @@ class TabParticipantes extends Component
      */
     public function render()
     {
-        return view('components.eventos.tab-participantes');
+        return view('components.eventos.accordion-atividades');
     }
 }

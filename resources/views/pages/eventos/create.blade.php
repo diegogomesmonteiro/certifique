@@ -390,11 +390,11 @@
 
                             <!--begin::Wrapper-->
                             <div>
-                                <a href="{{route('eventos.index')}}" class="btn btn-danger">
+                                <a href="{{route('eventos.index')}}" class="btn btn-sm btn-danger">
                                     Cancelar
                                 </a>
                                 
-                                <button type="submit" class="btn btn-primary" data-kt-stepper-action="submit">
+                                <button type="submit" class="btn btn-sm btn-primary" data-kt-stepper-action="submit">
                                     <span class="indicator-label">
                                         Salvar
                                     </span>
@@ -404,7 +404,7 @@
                                     </span>
                                 </button>
                                 
-                                <button type="button" class="btn btn-primary" data-kt-stepper-action="next">
+                                <button type="button" class="btn btn-sm btn-primary" data-kt-stepper-action="next">
                                     Avançar
                                 </button>
 

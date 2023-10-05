@@ -14,9 +14,10 @@ class AtividadeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Evento $evento)
     {
-        //
+        $atividades = $evento->atividades();
+        return view('atividades.index', ['atividades'=>$atividades, 'evento'=>$evento]);
     }
 
     /**

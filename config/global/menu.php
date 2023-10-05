@@ -221,13 +221,13 @@ return array(
                 'class' => 'menu-sub-accordion menu-active-bg',
                 'items' => array(
                     array(
-                        'title'  => 'Listar',
-                        'path'   => 'eventos',
+                        'title'  => 'Cadastrar',
+                        'path'   => 'eventos/create',
                         'bullet' => '<span class="bullet bullet-dot"></span>',
                     ),
                     array(
-                        'title'  => 'Cadastrar',
-                        'path'   => 'eventos/create',
+                        'title'  => 'Listar',
+                        'path'   => 'eventos',
                         'bullet' => '<span class="bullet bullet-dot"></span>',
                     ),
                 ),

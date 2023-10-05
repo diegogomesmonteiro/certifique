@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Atividade;
+use App\Models\Participante;
 use Illuminate\Http\Request;
 
 class ParticipanteController extends Controller
@@ -69,7 +70,22 @@ class ParticipanteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $participante = Participante::find($id);
+        if (!$participante) {
+            session()->flash('danger', 'Participante não encontrado!');
+            return redirect()->back();
+        }
+        $atualizado = $participante->update([
+            'cpf' => $request->cpf,
+            'nome' => $request->nome,
+            'email' => $request->email,
+        ]);
+        if (!$atualizado) {
+            session()->flash('danger', 'Erro ao atualizar dados do participante!');
+        }else{
+            session()->flash('success', 'Dado(s) do participante atualizado(s) com sucesso!');
+        }
+        return redirect()->back();
     }
 
     /**

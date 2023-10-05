@@ -9,7 +9,7 @@ use App\Http\Controllers\Logs\AuditLogsController;
 use App\Http\Controllers\Logs\SystemLogsController;
 use App\Http\Controllers\Account\SettingsController;
 use App\Http\Controllers\AtividadeController;
-use App\Http\Controllers\AtividadeParticipanteTemporarioController;
+use App\Http\Controllers\AtividadeParticipantesController;
 use App\Http\Controllers\Auth\SocialiteLoginController;
 use App\Http\Controllers\Documentation\ReferencesController;
 use App\Http\Controllers\ParticipanteController;
@@ -66,10 +66,15 @@ Route::middleware('auth')->group(function () {
     Route::prefix('atividades')->group(function () {
         Route::patch('/{atividade}', [AtividadeController::class, 'update'])->name('atividades.update');
         Route::delete('/{atividade}', [AtividadeController::class, 'destroy'])->name('atividades.destroy');
-        Route::get('/{atividade}/participantes/create', [ParticipanteController::class, 'create'])->name('atividades.participantes.create');
+        Route::get('/{atividade}/participantes/create', [ParticipanteController::class, 'create'])->name('atividades-participantes.create');
+    });
+    Route::prefix('atividade-participantes')->group(function () {
+        Route::post('/import', [AtividadeParticipantesController::class, 'import'])->name('atividade-participantes.import');
+        Route::post('/create', [AtividadeParticipantesController::class, 'store'])->name('atividade-participantes.store');
+        Route::delete('/atividade/{atividade}/participante/{participante}', [AtividadeParticipantesController::class, 'destroy'])->name('atividade-participantes.destroy');
     });
     Route::prefix('participantes')->group(function () {
-        Route::post('/import', [AtividadeParticipanteTemporarioController::class, 'import'])->name('participantes.import');
+        Route::patch('/{participante}', [ParticipanteController::class, 'update'])->name('participantes.update');
     });
 
     // Logs pages
@@ -87,4 +92,4 @@ Route::resource('users', UsersController::class);
  */
 Route::get('/auth/redirect/{provider}', [SocialiteLoginController::class, 'redirect']);
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

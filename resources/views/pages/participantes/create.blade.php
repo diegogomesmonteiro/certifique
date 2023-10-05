@@ -32,14 +32,14 @@
                                 </span>
                             </label>
                             <div>
-                                <button type='submit' class="btn btn-primary">Avançar</button>
+                                <button type='submit' class="btn btn-sm btn-primary">Avançar</button>
                             </div>
                         </form>
                         <!--end::Option-->
                     </div>
                     <div class="col-4">
                         <h6>Cadastrar individualmente</h6>
-                        <a href="" class="btn btn-primary">Chamar modal</a>
+                        <a href="" class="btn btn-sm btn-primary">Chamar modal</a>
                     </div>
                 </div>
             </div>

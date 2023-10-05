@@ -4,16 +4,14 @@ namespace App\View\Components\Eventos;
 
 use Illuminate\View\Component;
 
-class TabCertificados extends Component
+class TabConfigCertificados extends Component
 {
-    /**
-     * Create a new component instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    
+    public $ativo; 
+
+    public function __construct($ativo=null)
     {
-        //
+        $this->ativo = $ativo;
     }
 
     /**
@@ -23,6 +21,6 @@ class TabCertificados extends Component
      */
     public function render()
     {
-        return view('components.eventos.tab-certificados');
+        return view('components.eventos.tab-config-certificados');
     }
 }
