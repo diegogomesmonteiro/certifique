@@ -19,7 +19,7 @@ class EventoController extends Controller
     public function index()
     {
         $eventos = Evento::orderByDesc('data_inicio')->get();
-        return view('pages.eventos.index',['eventos'=>$eventos]);
+        return view('pages.eventos.index', ['eventos' => $eventos]);
     }
 
     /**
@@ -55,10 +55,14 @@ class EventoController extends Controller
      * @param  \App\Models\Evento  $evento
      * @return \Illuminate\Http\Response
      */
-    public function show(Evento $evento)
+    public function show(Evento $evento, String $abaAtiva = 'atividades')
     {
         $atividadeTipos = AtividadeTipo::orderBy('nome')->get();
-        return view('pages.eventos.show',['evento'=>$evento, 'atividadeTipos'=>$atividadeTipos]);
+        return view('pages.eventos.show', [
+            'evento' => $evento,
+            'atividadeTipos' => $atividadeTipos,
+            'abaAtiva' => $abaAtiva,
+        ]);
     }
 
     /**
