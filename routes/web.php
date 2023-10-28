@@ -5,15 +5,15 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\EventoController;
+use App\Http\Controllers\AtividadeController;
+use App\Http\Controllers\ParticipanteController;
 use App\Http\Controllers\Logs\AuditLogsController;
 use App\Http\Controllers\Logs\SystemLogsController;
 use App\Http\Controllers\Account\SettingsController;
-use App\Http\Controllers\AtividadeController;
-use App\Http\Controllers\AtividadeParticipantesController;
+use App\Http\Controllers\ConfigCertificadosController;
 use App\Http\Controllers\Auth\SocialiteLoginController;
-use App\Http\Controllers\ConfigCertificados;
+use App\Http\Controllers\AtividadeParticipantesController;
 use App\Http\Controllers\Documentation\ReferencesController;
-use App\Http\Controllers\ParticipanteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,9 +57,14 @@ Route::middleware('auth')->group(function () {
         Route::get('/', [EventoController::class, 'index'])->name('eventos.index');
         Route::get('/create', [EventoController::class, 'create'])->name('eventos.create');
         Route::post('/', [EventoController::class, 'store'])->name('eventos.store');
-        Route::get('/{evento}', [EventoController::class, 'show'])->name('eventos.show');
+        Route::get('/{evento}/{abaAtiva?}', [EventoController::class, 'show'])->name('eventos.show');
         Route::post('/{evento}/atividades', [AtividadeController::class, 'store'])->name('atividades.store');
-        Route::get('/{evento}/config-certificados', [ConfigCertificados::class, 'create'])->name('config-certificados.create');
+        Route::get('/{evento}/config-certificados/{tipoConfigCertificado}/create', [ConfigCertificadosController::class, 'create'])->name('config-certificados.create');
+        Route::post('/{evento}/config-certificados', [ConfigCertificadosController::class, 'store'])->name('config-certificados.store');
+    });
+
+    Route::prefix('config-certificados')->group(function () {
+        Route::delete('/{config_certificado}', [ConfigCertificadosController::class, 'destroy'])->name('config-certificados.destroy');
     });
 
     Route::prefix('atividades')->group(function () {
@@ -77,7 +82,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('participantes')->group(function () {
         Route::patch('/{participante}', [ParticipanteController::class, 'update'])->name('participantes.update');
     });
-    
+
     // Logs pages
     Route::prefix('log')->name('log.')->group(function () {
         Route::resource('system', SystemLogsController::class)->only(['index', 'destroy']);
