@@ -42,7 +42,22 @@
                                 <td>{{ $configCertificado->nome }}</td>
                                 <td>{{ $configCertificado->tipo->value }}</td>
                                 <td>{{ $configCertificado->atividade->nome ?? 'Não possui' }}</td>
-                                <td class="d-flex justify-content-center">
+                                <td class="d-flex gap-2 justify-content-center">
+                                    <a href="{{ route('config-certificados.edit', $configCertificado) }}"
+                                        class="btn btn-sm btn-primary">
+                                        <i class="bi bi-pencil-square" alt="Editar"></i>
+                                    </a>
+                                    @php
+                                        $dados['participantes'] = $configCertificado->participantesDisponiveisParaCertificacao();
+                                        $dados['configCertificadoId'] = $configCertificado->id;
+                                    @endphp
+                                    @if ($dados['participantes']->count())
+                                        <a id="publicar" href="#" data-bs-toggle="modal"
+                                            data-bs-target="#modal_publicar_certificado"
+                                            data-bs-whatever="{{ json_encode($dados) }}" class="btn btn-sm btn-primary">
+                                            <i class="bi bi-send-fill" alt="Publicar"></i>
+                                        </a>
+                                    @endif
                                     <form action="{{ route('config-certificados.destroy', [$configCertificado]) }}"
                                         method="POST">
                                         @csrf
@@ -51,14 +66,6 @@
                                             <i class="bi bi-trash3-fill danger" alt="Excluir"></i>
                                         </button>
                                     </form>
-                                    <a href="#" class="mx-4 btn btn-sm btn-primary">
-                                        <i class="bi bi-pencil-square" alt="Editar"></i>
-                                    </a>
-                                    <a id="editar" href="" data-bs-toggle="modal"
-                                        data-bs-target="#modal_editar_atividade"
-                                        data-bs-whatever="{{ $configCertificado }}" class="btn btn-sm btn-primary">
-                                        <i class="bi bi-send-fill" alt="Publicar"></i>
-                                    </a>
                                 </td>
                             </tr>
                         @endforeach

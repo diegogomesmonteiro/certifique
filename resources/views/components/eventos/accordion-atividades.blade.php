@@ -29,30 +29,31 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($atividade->participantes as $participante)
-                                        <tr>
-                                            <td>{{ $participante->nome }}</td>
-                                            <td>{{ $participante->cpf }}</td>
-                                            <td>{{ $participante->email }}</td>
-                                            <td>
-                                                @foreach ($participante->perfilsNaAtividade($atividade) as $perfil)
+                                            <tr>
+                                                <td>{{ $participante->nome }}</td>
+                                                <td>{{ $participante->cpf }}</td>
+                                                <td>{{ $participante->email }}</td>
+                                                <td>
+                                                    @foreach ($participante->perfilsNaAtividade($atividade) as $perfil)
                                                         <span
                                                             class="badge badge-light-primary">{{ $perfil->nome }}</span>
                                                     @endforeach
                                                 </td>
-                                                <td>
-                                                <td class="d-flex gap-2">
+                                                <td class="d-flex gap-2 justify-content-center">
                                                     <a id="editar" href="" data-bs-toggle="modal"
                                                         data-bs-target="#modal_editar_participante"
                                                         data-bs-whatever="{{ $participante }}"
-                                                        class="btn btn-sm btn-primary"><i
-                                                            class="bi bi-pencil-square"></i></a>
+                                                        class="btn btn-sm btn-primary">
+                                                        <i class="bi bi-pencil-square"></i>
+                                                    </a>
                                                     <form
                                                         action="{{ route('atividade-participantes.destroy', [$atividade, $participante]) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-sm btn-danger"><i
-                                                                class="bi bi-trash3-fill danger"></i></button>
+                                                        <button type="submit" class="btn btn-sm btn-danger">
+                                                            <i class="bi bi-trash3-fill danger"></i>
+                                                        </button>
                                                     </form>
                                                 </td>
                                                 </td>

@@ -35,9 +35,30 @@ class ConfigCertificado extends Model
         return $this->belongsTo(Atividade::class);
     }
 
-    public function participantesDisponiveisParaCertificacao()
+    public function certificados()
     {
-        return Evento::find($this->evento_id)->participantes;
+        return $this->hasMany(Certificado::class);
     }
 
+    public function participantesDisponiveisParaCertificacao()
+    {
+        $certificados = $this->certificados;
+        $participantesCertificados = $certificados->pluck('participante');
+        if ($this->tipo == TipoConfigCertificadoEnum::GERAL) {
+            $participantes = $this->evento->getParticipantes();
+        } else if ($this->tipo == TipoConfigCertificadoEnum::ATIVIDADE) {
+            $participantes = $this->atividade->participantes;
+        }
+        $participantesNaoCertificados = $participantes->whereNotIn('id', $participantesCertificados->pluck('id'));
+        return $participantesNaoCertificados;
+    }
+
+    public function getPathLayout()
+    {
+        if ($this->layout == null) return null;
+        if ($this->layout == 'img/certificado.jpg') {
+            return 'img/certificado.jpg';
+        }
+        return 'storage/img/layout-certificados/' . $this->evento_id . "/" . $this->layout;
+    }
 }

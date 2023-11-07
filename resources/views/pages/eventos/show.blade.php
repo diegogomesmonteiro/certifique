@@ -7,4 +7,5 @@
     <x-eventos.modal-cadastrar-participante :evento="$evento" />
     <x-eventos.modal-importar-participantes :evento="$evento" />
     <x-eventos.modal-editar-participante />
+    <x-eventos.modal-publicar-certificados />
 </x-base-layout>
