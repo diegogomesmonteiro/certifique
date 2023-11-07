@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Enums\TipoConfigCertificadoEnum;
 use App\Models\Certificado\ConfigCertificado;
 use App\Http\Requests\StoreConfigCertificadoRequest;
+use App\Http\Requests\UpdateConfigCertificadoRequest;
 
 class ConfigCertificadosController extends Controller
 {
@@ -78,7 +79,17 @@ class ConfigCertificadosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $configCertificado = ConfigCertificado::findOrFail($id);
+        if (!$configCertificado) {
+            return redirect()->back()->with('danger', 'Configuração de certificado não encontrada!');
+        }
+        $evento = $configCertificado->evento;
+        $tipoConfigCertificado = $configCertificado->tipo;
+        return view('pages.eventos.config-certificados.create', [
+            'evento' => $evento,
+            'tipoConfigCertificado' => $tipoConfigCertificado,
+            'configCertificado' => $configCertificado,
+        ]);
     }
 
     /**
@@ -88,9 +99,26 @@ class ConfigCertificadosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateConfigCertificadoRequest $request, $id)
     {
-        //
+        $dadosValidados = $request->validated();
+        $configCertificado = ConfigCertificado::findOrFail($id);
+        if (!$configCertificado) {
+            return redirect()->back()->with('danger', 'Configuração de certificado não encontrada!');
+        }
+        if ($request->hasFile('arquivo_layout')) {
+            $layout = $request->file('arquivo_layout');
+            $layout->storePubliclyAs('public/img/layout-certificados/' . $configCertificado->evento_id, $layout->getClientOriginalName());
+            $dadosValidados['layout'] = $layout->getClientOriginalName();
+        }
+        $result = $configCertificado->update($dadosValidados);
+        if (!$result) {
+            return redirect()->back()->with('danger', 'Erro ao atualizar configuração de certificado!');
+        }
+        return redirect()->route('eventos.show', [
+            'evento' => $configCertificado->evento,
+            'abaAtiva' => 'config-certificados',
+        ])->with('success', 'Configuração de certificado atualizada com sucesso!');
     }
 
     /**
@@ -109,7 +137,7 @@ class ConfigCertificadosController extends Controller
         $layouts = ConfigCertificado::where('layout', $configCertificado->layout)
             ->where('evento_id', $configCertificado->evento_id)
             ->get();
-        if($layouts->count() == 1){
+        if ($layouts->count() == 1) {
             $path = 'public/img/layout-certificados/' . $configCertificado->evento_id . '/' . $configCertificado->layout;
             Storage::delete($path);
         }
@@ -117,7 +145,7 @@ class ConfigCertificadosController extends Controller
         if (!$result) {
             return redirect()->back()->with('danger', 'Erro ao excluir configuração de certificado!');
         }
-        return redirect()->route('eventos.show',[
+        return redirect()->route('eventos.show', [
             'evento' => $evento,
             'abaAtiva' => 'config-certificados',
         ])->with('success', 'Configuração de certificado excluída com sucesso!');

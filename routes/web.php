@@ -13,6 +13,7 @@ use App\Http\Controllers\Account\SettingsController;
 use App\Http\Controllers\ConfigCertificadosController;
 use App\Http\Controllers\Auth\SocialiteLoginController;
 use App\Http\Controllers\AtividadeParticipantesController;
+use App\Http\Controllers\CertificadoController;
 use App\Http\Controllers\Documentation\ReferencesController;
 
 /*
@@ -65,6 +66,16 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('config-certificados')->group(function () {
         Route::delete('/{config_certificado}', [ConfigCertificadosController::class, 'destroy'])->name('config-certificados.destroy');
+        Route::patch('/{config_certificado}', [ConfigCertificadosController::class, 'update'])->name('config-certificados.update');
+        Route::get('/{config_certificado}/edit', [ConfigCertificadosController::class, 'edit'])->name('config-certificados.edit');
+    });
+
+    Route::prefix('certificados')->group(function () {
+        //Route::get('/{certificado}/download', [CertificadoController::class, 'download'])->name('certificados.download');
+        Route::post('/publicar', [CertificadoController::class, 'publicar'])->name('certificados.publicar');
+        Route::post('/alterar-publicacao', [CertificadoController::class, 'alterarPublicacao'])->name('certificados.alterar-publicacao');
+        Route::delete('/{certificado}', [CertificadoController::class, 'destroy'])->name('certificados.destroy');
+
     });
 
     Route::prefix('atividades')->group(function () {

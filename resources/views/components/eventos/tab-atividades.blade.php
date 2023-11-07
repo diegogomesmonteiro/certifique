@@ -37,25 +37,31 @@
                                 <td>
                                     @if ($atividade->participantes()->count() > 0)
                                         <span class="badge badge-light-info">{{ $atividade->participantes()->count() }}
-                                            participante(s)</span>
+                                            participante(s)
+                                        </span>
                                     @else
                                         <button class="badge badge-light-info" data-bs-toggle="modal"
-                                            data-bs-target="#modal_importar_participantes"><i
-                                                class="bi bi-database-fill-up"></i></button>
+                                            data-bs-target="#modal_importar_participantes">
+                                            <i class="bi bi-database-fill-up"></i>
+                                        </button>
                                         <button class="badge badge-light-info" data-bs-toggle="modal"
-                                            data-bs-target="#modal_cadastrar_participante"><i
-                                                class="bi bi-person-fill-add"></i></button>
+                                            data-bs-target="#modal_cadastrar_participante">
+                                            <i class="bi bi-person-fill-add"></i>
+                                        </button>
                                     @endif
                                 </td>
-                                <td class="d-flex gap-2">
+                                <td class="d-flex gap-2 justify-content-center">
                                     <a id="editar" href="" data-bs-toggle="modal"
                                         data-bs-target="#modal_editar_atividade" data-bs-whatever="{{ $atividade }}"
-                                        class="btn btn-sm btn-primary"><i class="bi bi-pencil-square"></i></a>
+                                        class="btn btn-sm btn-primary">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
                                     <form action="{{ route('atividades.destroy', [$atividade]) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger"><i
-                                                class="bi bi-trash3-fill danger"></i></button>
+                                        <button type="submit" class="btn btn-sm btn-danger">
+                                            <i class="bi bi-trash3-fill danger"></i>
+                                        </button>
                                     </form>
                                 </td>
                             </tr>

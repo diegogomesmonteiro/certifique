@@ -15,9 +15,14 @@
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link {{ $ativo == 'config-certificados' ? 'active' : '' }}"
-                            id="certificados-tab" data-bs-toggle="tab" data-bs-target="#config-certificados"
+                            id="config-certificados-tab" data-bs-toggle="tab" data-bs-target="#config-certificados"
                             type="button" role="tab" aria-controls="config-certificados"
                             aria-selected="false">Configurações de Certificados</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link {{ $ativo == 'certificados' ? 'active' : '' }}" id="certificados-tab"
+                            data-bs-toggle="tab" data-bs-target="#certificados" type="button" role="tab"
+                            aria-controls="certificados" aria-selected="false">Certificados</button>
                     </li>
                 @endif
             </ul>
@@ -27,6 +32,7 @@
                 @if ($atividades->isNotEmpty())
                     <x-eventos.tab-participantes :ativo="$ativo" :atividades='$atividades' />
                     <x-eventos.tab-config-certificados :ativo="$ativo" :evento="$atividades[0]->evento" />
+                    <x-eventos.tab-certificados :ativo="$ativo" :evento="$atividades[0]->evento" />
                 @endif
             </div>
         </div>

@@ -24,7 +24,12 @@
                 background-size: contain;
                 position: relative;
                 background-position: center 40px;
-                background-image: url("{{ @asset('img/certificado.jpg') }}");
+
+                @if (isset($configCertificado) && $configCertificado->getPathLayout() != null)
+                    background-image: url("{{ @asset($configCertificado->getPathLayout()) }}");
+                @else
+                    background-image: url("{{ @asset('img/certificado.jpg') }}");
+                @endif
                 background-origin: content-box;
             }
         </style>
@@ -34,60 +39,69 @@
     <div class="row mt-4">
         <div class="card mb-4 w-100">
             <div class="card-body">
-                <form action="{{ route('config-certificados.store', $evento) }}" method="POST"
-                    enctype="multipart/form-data">
-                    @csrf
-                    <input type="hidden" name="evento_id" value="{{ $evento->id }}">
-                    <input type="hidden" name="tipo" value="{{ $tipoConfigCertificado->value }}">
-                    <div class="row mb-4">
-                        <div class="col-6">
-                            <label class="form-label" for="nome">Nome do certificado</label>
-                            <input type="text" class="form-control form-control-solid" id="nome" name="nome"
-                                placeholder="Nome do certificado" value="{{ old('nome') }}" required />
-                        </div>
-                        <div class="col-6">
-                            <label class="form-label" for="layout">Layout do certificado (tamanho: 1754x1240
-                                pixels)</label>
-                            <input type="file" class="form-control form-control-solid" id="arquivo_layout" name="arquivo_layout"
-                                value="{{ old('arquivo_layout') }}" />
-                            <span>*Caso não escolha o layout, será utilizado o layout padrão.</span>
-                        </div>
+                @if (request()->routeIs('config-certificados.edit'))
+                    <form action="{{ route('config-certificados.update', $configCertificado) }}" method="POST"
+                        enctype="multipart/form-data">
+                        @method('PATCH')
+                    @else
+                        <form action="{{ route('config-certificados.store', $evento) }}" method="POST"
+                            enctype="multipart/form-data">
+                @endif
+                @csrf
+                <input type="hidden" name="evento_id" value="{{ $evento->id }}">
+                <input type="hidden" name="tipo" value="{{ $tipoConfigCertificado->value }}">
+                <div class="row mb-4">
+                    <div class="col-6">
+                        <label class="form-label" for="nome">Nome do certificado</label>
+                        <input type="text" class="form-control form-control-solid" id="nome" name="nome"
+                            placeholder="Nome do certificado" value="{{ $configCertificado->nome ?? old('nome') }}"
+                            required />
                     </div>
-                    @if ($tipoConfigCertificado === TipoConfigCertificadoEnum::ATIVIDADE)
-                        <div class="row mb-4">
-                            <div class="text-center">
-                                <label class="form-label" for="atividade_id">Selecione a atividade</label>  
-                                <select class="form-select form-select-solid" name="atividade_id" id="atividade_id">
-                                    @foreach ($evento->atividades as $atividade)
-                                    <option disabled>Escolha a opção</option>
-                                        <option value="{{ $atividade->id }}">{{ $atividade->nome }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                    @endif
+                    <div class="col-6">
+                        <label class="form-label" for="layout">Layout do certificado (tamanho: 1754x1240
+                            pixels)</label>
+                        <input type="file" class="form-control form-control-solid" id="arquivo_layout"
+                            name="arquivo_layout" value="{{ old('arquivo_layout') }}" />
+                        <span>*Caso não escolha o layout, será utilizado o layout padrão.</span>
+                    </div>
+                </div>
+                @if ($tipoConfigCertificado === TipoConfigCertificadoEnum::ATIVIDADE)
                     <div class="row mb-4">
                         <div class="text-center">
-                            <p class="form-label" for="nome">Utilize essas TAGs para adicionar partes
-                                textuais dinâmicas</p>
-                            <div class="p-2 bg-gray-300 align-items-center">
-                                @foreach ($tipoConfigCertificado->getTags() as $tag)
-                                    <span class="badge badge-light-success">{{ $tag }}</span>
+                            <label class="form-label" for="atividade_id">Selecione a atividade</label>
+                            <select class="form-select form-select-solid" name="atividade_id" id="atividade_id" required>
+                                <option selected disabled value="" >Escolha a opção</option>
+                                @foreach ($evento->atividades as $atividade)
+                                    <option value="{{ $atividade->id }}">{{ $atividade->nome }}</option>
                                 @endforeach
-                            </div>
+                            </select>
                         </div>
                     </div>
-                    <div class="centered">
-                        <div class="row row-editor">
-                            <div id="divPreviewCertificado">
-                                <textarea name="texto" id="previewCertificado" hidden></textarea>
-                            </div>
+                @endif
+                <div class="row mb-4">
+                    <div class="text-center">
+                        <p class="form-label" for="nome">Utilize essas TAGs para adicionar partes
+                            textuais dinâmicas</p>
+                        <div class="p-2 bg-gray-300 align-items-center">
+                            @foreach ($tipoConfigCertificado->getTags() as $tag)
+                                <span class="badge badge-light-success">{{ $tag }}</span>
+                            @endforeach
                         </div>
                     </div>
-                    <div class="card-footer d-flex justify-content-end">
-                        <a class="btn btn-sm btn-danger" href="{{ url()->previous() }}">Cancelar</a>
-                        <button type="submit" class="btn btn-sm btn-primary ms-2">Salvar</button>
+                </div>
+                <div class="centered">
+                    <div class="row row-editor">
+                        <div id="divPreviewCertificado">
+                            <textarea name="texto" id="previewCertificado" hidden>
+                                    {{ $configCertificado->texto ?? old('texto') }}
+                                </textarea>
+                        </div>
                     </div>
+                </div>
+                <div class="card-footer d-flex justify-content-end">
+                    <a class="btn btn-sm btn-danger" href="{{ url()->previous() }}">Cancelar</a>
+                    <button type="submit" class="btn btn-sm btn-primary ms-2">Salvar</button>
+                </div>
                 </form>
             </div>
         </div>
@@ -96,6 +110,7 @@
         <script src="{{ @asset('assets\vendor\ckeditor5\build\ckeditor.js') }}" type="text/javascript"></script>
         <script type="text/javascript">
             document.addEventListener("DOMContentLoaded", function() {
+
                 arquivo_layout.addEventListener("change", handleFiles, false);
 
                 function handleFiles() {
