@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Atividade;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\AtividadeParticipante;
 use Illuminate\Database\Seeder;
 
-class AtividadeSeeder extends Seeder
+class AtividadeParticipanteSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +14,6 @@ class AtividadeSeeder extends Seeder
      */
     public function run()
     {
-        Atividade::factory()->count(30)->create();
+        AtividadeParticipante::factory()->count(1000)->create();
     }
 }

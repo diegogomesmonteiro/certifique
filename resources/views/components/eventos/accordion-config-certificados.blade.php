@@ -15,7 +15,7 @@
                     data-bs-parent="#kt_accordion_1">
                     <div class="accordion-body">
                         @if ($configCertificado->certificados->isEmpty())
-                            <p>Nenhum certificado gerado para esta configucação.</p>
+                            <p>Nenhum certificado gerado para esta configuração.</p>
                         @else
                             <div class="table-responsive">
                                 <table class="table table-hover align-middle text-center">
@@ -44,7 +44,10 @@
                                                     </label>
                                                 </td>
                                                 <td class="d-flex gap-2 justify-content-center">
-                                                    <a id="download" href="" class="btn btn-sm btn-primary">
+                                                    <a id="download"
+                                                        target="_blank"
+                                                        href="{{ route('certificados.download', ['certificado' => $certificado]) }}"
+                                                        class="btn btn-sm btn-primary">
                                                         <i class="bi bi-file-earmark-arrow-down-fill"></i>
                                                     </a>
                                                     <form

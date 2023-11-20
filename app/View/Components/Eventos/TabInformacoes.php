@@ -4,19 +4,18 @@ namespace App\View\Components\Eventos;
 
 use Illuminate\View\Component;
 
-class CardNavTabs extends Component
+class TabInformacoes extends Component
 {
+    
     public $evento;
-    public $atividades;
     public $ativo;
 
-    public function __construct($evento, String $ativo=null)
+
+    public function __construct($evento, $ativo=null)
     {
         $this->evento = $evento;
-        $this->atividades = $evento->atividades;
         $this->ativo = $ativo;
     }
-
 
     /**
      * Get the view / contents that represent the component.
@@ -25,6 +24,6 @@ class CardNavTabs extends Component
      */
     public function render()
     {
-        return view('components.eventos.card-nav-tabs');
+        return view('components.eventos.tab-informacoes');
     }
 }

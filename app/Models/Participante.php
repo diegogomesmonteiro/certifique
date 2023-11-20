@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Perfil;
 use App\Models\Atividade;
+use App\Models\Certificado\Certificado;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -21,6 +22,11 @@ class Participante extends Model
     public function atividades()
     {
         return $this->belongsToMany(Atividade::class, 'atividade_participantes');
+    }
+
+    public function certificados()
+    {
+        return $this->hasMany(Certificado::class);
     }
 
     public function perfils()

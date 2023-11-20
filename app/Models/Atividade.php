@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Perfil;
 use App\Models\Participante;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Certificado\ConfigCertificado;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Atividade extends Model
@@ -33,6 +34,11 @@ class Atividade extends Model
     {
         return $this->belongsToMany(Participante::class, 'atividade_participantes')
             ->distinct('participantes.id')->orderBy('nome');
+    }
+
+    public function configCertificados()
+    {
+        return $this->hasMany(ConfigCertificado::class, 'atividade_id');
     }
 
     public function perfils()

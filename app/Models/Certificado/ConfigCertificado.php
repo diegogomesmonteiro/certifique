@@ -61,4 +61,20 @@ class ConfigCertificado extends Model
         }
         return 'storage/img/layout-certificados/' . $this->evento_id . "/" . $this->layout;
     }
+
+    // public function bindTags($tags)
+    // {
+    //     $this->texto = $this->bindTagsTexto($tags);
+    //     $this->save();
+    // }
+
+    // public function bindTagsTexto($tags)
+    // {
+    //     $texto = $this->texto;
+    //     foreach ($tags as $tag) {
+    //         $variavel = '{{$'.TipoConfigCertificadoEnum::getVariavel($tag).'}}';
+    //         $texto = str_replace($tag,$variavel , $texto);
+    //     }
+    //     return $texto;
+    // }
 }

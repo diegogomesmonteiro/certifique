@@ -1,4 +1,7 @@
 <x-base-layout>
+    @if (request()->routeIs('eventos.edit'))
+        @section('titulo', 'Editar evento: ' . $evento->nome)
+    @endif
     <!--begin::Stepper-->
     <div class="stepper stepper-pills stepper-column d-flex flex-column  flex-lg-row" id="kt_stepper_example_vertical">
         <!--begin::Aside-->
@@ -23,10 +26,6 @@
                                     <h3 class="stepper-title">
                                         Tipo de evento
                                     </h3>
-
-                                    <div class="stepper-desc">
-
-                                    </div>
                                 </div>
                                 <!--end::Label-->
                             </div>
@@ -55,9 +54,6 @@
                                         Informações do evento
                                     </h3>
 
-                                    <div class="stepper-desc">
-                                        Description
-                                    </div>
                                 </div>
                                 <!--end::Label-->
                             </div>
@@ -68,6 +64,7 @@
                             <!--end::Line-->
                         </div>
                         <!--end::Step 2-->
+
 
                         {{-- <!--begin::Step 3-->
                         <div class="stepper-item me-5" data-kt-stepper-element="nav">
@@ -137,75 +134,50 @@
                 <!--begin::Content-->
                 <div class="flex-row-fluid">
                     <!--begin::Form-->
-                    <form class="form w-lg mx-auto" method="POST" action="{{ route('eventos.store') }}">
+                    @if (request()->routeIs('eventos.edit'))
+                        <form class="form w-lg mx-auto" action="{{ route('eventos.update', $evento) }}" method="POST">
+                            @method('PATCH')
+                        @else
+                            <form class="form w-lg mx-auto" action="{{ route('eventos.store')}}" method="POST">
+                    @endif
                         @csrf
                         <!--begin::Group-->
                         <div class="mb-5">
                             <!--begin::Step 1-->
                             <div class="flex-column current" data-kt-stepper-element="content">
-                                <!--begin::Input group-->
-                                <div class="fv-row mb-5">
-                                    <!--begin::Option-->
-                                    <input type="radio" class="btn-check" name="tipo" value="Atividade"
-                                        id="radio-atividade" checked />
-                                    <label
-                                        class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center"
-                                        for="radio-atividade">
-                                        <i class="bi bi-clock fs-3x me-4"></i>
-                                        <span class="d-block fw-semibold text-start">
-                                            <span class="text-dark fw-bold d-block fs-6">Atividade</span>
-                                            <span class="text-muted fw-semibold fs-6">
-                                                <small> Ação composta por uma única atividade.</small>
+                                @foreach (EventoTipoEnum::cases() as $eventoTipo)
+                                    <!--begin::Input group-->
+                                    <div class="fv-row mb-5">
+                                        <!--begin::Option-->
+                                        @if (request()->routeIs('eventos.edit'))
+                                        <input type="radio" class="btn-check" name="tipo"
+                                            value="{{ $eventoTipo->value }}" id="radio-{{ $eventoTipo->value }}"
+                                            {{ $evento->tipo == $eventoTipo ? 'checked' : '' }} />
+                                        @else
+                                        <input type="radio" class="btn-check" name="tipo"
+                                            value="{{ $eventoTipo->value }}" id="radio-{{ $eventoTipo->value }}"
+                                            {{ $loop->first ? 'checked' : '' }} />
+                                        @endif
+                                        <label
+                                            class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center"
+                                            for="radio-{{ $eventoTipo->value }}">
+                                            <i class="{{ $eventoTipo->getIconClass() }} fs-3x me-4"></i>
+                                            <span class="d-block fw-semibold text-start">
+                                                <span
+                                                    class="text-dark fw-bold d-block fs-6">{{ $eventoTipo->value }}</span>
+                                                <span class="text-muted fw-semibold fs-6">
+                                                    <small> {{ $eventoTipo->getDescricao() }}</small>
+                                                </span>
                                             </span>
-                                        </span>
-                                    </label>
-                                    <!--end::Option-->
-                                </div>
-                                <!--end::Input group-->
-                                <!--begin::Input group-->
-                                <div class="fv-row mb-5">
-                                    <!--begin::Option-->
-                                    <input type="radio" class="btn-check" name="tipo" value="Evento"
-                                        id="radio-evento" />
-                                    <label
-                                        class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center"
-                                        for="radio-evento">
-                                        <i class="bi bi-calendar2-event fs-3x me-4"></i>
-                                        <span class="d-block fw-semibold text-start">
-                                            <span class="text-dark fw-bold d-block fs-6">Evento</span>
-                                            <span class="text-muted fw-semibold fs-6">
-                                                <small> Ação composta por várias atividades.</small>
-                                            </span>
-                                        </span>
-                                    </label>
-                                    <!--end::Option-->
-                                </div>
-                                <!--end::Input group-->
-
-                                <!--begin::Input group-->
-                                <div class="fv-row mb-5">
-                                    <!--begin::Option-->
-                                    <input type="radio" class="btn-check" name="tipo" value="Projeto"
-                                        id="radio-projeto" />
-                                    <label
-                                        class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center"
-                                        for="radio-projeto">
-                                        <i class="bi bi-kanban fs-3x me-4"></i>
-                                        <span class="d-block fw-semibold text-start">
-                                            <span class="text-dark fw-bold d-block fs-6">Projeto</span>
-                                            <span class="text-muted fw-semibold fs-6">
-                                                <small> Projetos diversos.</small>
-                                            </span>
-                                        </span>
-                                    </label>
-                                    <!--end::Option-->
-                                </div>
-                                <!--end::Input group-->
-
+                                        </label>
+                                        <!--end::Option-->
+                                    </div>
+                                    <!--end::Input group-->
+                                @endforeach
                             </div>
                             <!--begin::Step 1-->
 
-                            <!--begin::Step 1-->
+                            <!--begin::Step 2-->
                             <div class="flex-column" data-kt-stepper-element="content">
                                 <!--begin::Input group-->
                                 <div class="fv-row mb-10">
@@ -215,7 +187,7 @@
 
                                     <!--begin::Input-->
                                     <input type="text" class="form-control form-control-solid" id="nome"
-                                        name="nome" placeholder="" value="{{ old('nome') }}" required />
+                                        name="nome" placeholder="" value="{{ $evento->nome ?? old('nome') }}" required />
                                     <!--end::Input-->
                                 </div>
                                 <!--end::Input group-->
@@ -225,10 +197,9 @@
                                     <!--begin::Label-->
                                     <label class="form-label" for="descricao">Descrição</label>
                                     <!--end::Label-->
-
                                     <!--begin::Input-->
-                                    <textarea class="form-control form-control-solid" rows="3" maxlength="300" id="descricao" name="descricao"
-                                        placeholder="" value="{{ old('descricao') }}"></textarea>
+                                    <textarea class="form-control form-control-solid" rows="2" maxlength="300" id="descricao" name="descricao"
+                                        placeholder="" value="{{ $evento->descricao ?? old('descricao') }}" required>{{$evento->descricao}}</textarea>
                                     <!--end::Input-->
                                 </div>
                                 <!--end::Input group-->
@@ -242,7 +213,7 @@
 
                                         <!--begin::Input-->
                                         <input type="date" class="form-control form-control-solid" id="data_inicio"
-                                            name="data_inicio" placeholder="" value="{{ old('data_inicio') }}"
+                                            name="data_inicio" placeholder="" value="{{ $evento->data_inicio->format('Y-m-d') ?? old('data_inicio') }}"
                                             required />
                                         <!--end::Input-->
                                     </div>
@@ -253,14 +224,39 @@
 
                                         <!--begin::Input-->
                                         <input type="date" class="form-control form-control-solid" id="data_fim"
-                                            name="data_fim" placeholder="" value="{{ old('data_fim') }}" required />
+                                            name="data_fim" placeholder="" value="{{ $evento->data_fim->format('Y-m-d') ?? old('data_inicio') }}" required />
                                         <!--end::Input-->
                                     </div>
+                                    <div>
+                                        <!--begin::Label-->
+                                        <label class="form-label" for="carga_horaria">Carga horária (horas)</label>
+                                        <!--end::Label-->
 
+                                        <!--begin::Input-->
+                                        <input type="number" step="1" min="0"
+                                            class="form-control form-control-solid" id="carga_horaria"
+                                            name="carga_horaria" placeholder="" value="{{ $evento->carga_horaria ?? old('carga_horaria') }}"
+                                            required />
+                                        <!--end::Input-->
+                                    </div>
                                 </div>
                                 <!--end::Input group-->
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-4">
+                                    <!--begin::Label-->
+                                    <label class="form-label" for="local">Município/UF</label>
+                                    <!--end::Label-->
 
-                                {{--                                 
+                                    <!--begin::Input-->
+                                    <input type="text" class="form-control form-control-solid" id="local"
+                                        name="local" placeholder="" value="{{ $evento->local ?? old('local') }}" required />
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+                            </div>
+                            <!--end::Step 2-->
+
+                            {{--                                 
 
 
 
@@ -282,7 +278,6 @@
                                 </div>
                                 <!--end::Input group--> --}}
 
-                            </div>
                             <!--begin::Step 1-->
 
                             {{-- <!--begin::Step 1-->

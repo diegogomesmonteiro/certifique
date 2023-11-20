@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('config_certificado_id')->constrained('config_certificados');
             $table->foreignId('participante_id')->constrained('participantes');
             $table->foreignId('gerado_por_id')->constrained('users');
-            $table->foreignId('alterado_por_id')->constrained('users')->nullable();
+            $table->foreignId('alterado_por_id')->nullable()->constrained('users');
             $table->string('autenticacao')->unique();
             $table->boolean('publicado')->default(true);
             $table->timestamps();

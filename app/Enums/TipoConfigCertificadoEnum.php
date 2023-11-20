@@ -4,43 +4,39 @@ namespace App\Enums;
 
 enum TipoConfigCertificadoEnum: string
 {
-    case GERAL = "Geral";
     case ATIVIDADE = "Atividade";
-    case PARTICIPANTE = "Participante";
+    case GERAL = "Geral";
 
-    public static function getValues(): array
+    public function getColor(): string
     {
-        return [
-            self::GERAL->value,
-            self::ATIVIDADE->value,
-            self::PARTICIPANTE->value,
-        ];
+        return match ($this) {
+            static::ATIVIDADE => "secondary",
+            static::GERAL => "primary",
+        };
     }
 
     public function getTags(): array
     {
-        switch ($this->value) {
-            case self::GERAL->value:
-                return [
-                    "[participante.nome]",
-                    "[evento.nome]",
-                    "[evento.inicio]",
-                    "[evento.fim]",
-                    "[evento.carga_horaria]",
-                ];
-                break;
-            case self::ATIVIDADE->value:
-                return [
-                    "[participante.nome]",
-                    "[atividade.nome]",
-                    "[atividade.inicio]",
-                    "[ativcidade.fim]",
-                    "[atividade.carga_horaria]",
-                ];
-                break;
-            default:
-                return session()->flash('error', 'Tipo de configuração de certificado inválida');
-                break;
-        }
+        return match ($this) {
+            static::ATIVIDADE => [
+                "[participante.nome]",
+                "[participante.cpf]",
+                "[atividade.nome]",
+                "[atividade.inicio]",
+                "[atividade.fim]",
+                "[atividade.carga_horaria]",
+                "[evento.nome]",
+                "[evento.local]",
+            ],
+            static::GERAL => [
+                "[participante.nome]",
+                "[participante.cpf]",
+                "[evento.nome]",
+                "[evento.inicio]",
+                "[evento.fim]",
+                "[evento.carga_horaria]",
+                "[evento.local]",
+            ],
+        };
     }
 }

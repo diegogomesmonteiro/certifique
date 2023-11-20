@@ -28,9 +28,9 @@ class UsersSeeder extends Seeder
         $this->addDummyInfo($faker, $demoUser);
 
         $demoUser2 = User::create([
-            'first_name'        => $faker->firstName,
-            'last_name'         => $faker->lastName,
-            'email'             => 'admin@demo.com',
+            'first_name'        => 'Diego',
+            'last_name'         => 'Gomes Monteiro',
+            'email'             => 'admin@ifnmg.edu.br',
             'password'          => Hash::make('demo'),
             'email_verified_at' => now(),
         ]);

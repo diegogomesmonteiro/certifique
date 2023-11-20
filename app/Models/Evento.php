@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\Atividade;
-use App\Models\Participante;
+use App\Enums\EventoTipoEnum;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Certificado\ConfigCertificado;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,14 +12,17 @@ class Evento extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'tipo',
         'nome',
         'descricao',
+        'tipo',
         'data_inicio',
         'data_fim',
+        'carga_horaria',
+        'local',
     ];
 
     protected $casts = [
+        'tipo' => EventoTipoEnum::class,
         'data_inicio' => 'datetime:d/m/Y',
         'data_fim' => 'datetime:d/m/Y',
     ];
@@ -32,17 +35,6 @@ class Evento extends Model
     public function configCertificados()
     {
         return $this->hasMany(ConfigCertificado::class);
-    }
-
-    public function participantes()
-    {
-        $participantes = $this->atividades()->with('participantes')->get()->pluck('participantes')->flatten()->unique('id')->sortBy('nome');
-        dd($participantes);
-    dd($participantes);
-        $participantes = $this->manyToMany(Participante::class, );
-        return $this->hasManyThrough(Participante::class, Atividade::class);
-        
-        return $this->hasMany(Participante::class);
     }
 
     public function getParticipantes()

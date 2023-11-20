@@ -56,6 +56,9 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('eventos')->group(function () {
         Route::get('/', [EventoController::class, 'index'])->name('eventos.index');
+        Route::get('/{evento}/edit', [EventoController::class, 'edit'])->name('eventos.edit');
+        Route::patch('/{evento}', [EventoController::class, 'update'])->name('eventos.update');
+        Route::delete('/{evento}', [EventoController::class, 'destroy'])->name('eventos.destroy');
         Route::get('/create', [EventoController::class, 'create'])->name('eventos.create');
         Route::post('/', [EventoController::class, 'store'])->name('eventos.store');
         Route::get('/{evento}/{abaAtiva?}', [EventoController::class, 'show'])->name('eventos.show');
@@ -71,11 +74,10 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::prefix('certificados')->group(function () {
-        //Route::get('/{certificado}/download', [CertificadoController::class, 'download'])->name('certificados.download');
         Route::post('/publicar', [CertificadoController::class, 'publicar'])->name('certificados.publicar');
         Route::post('/alterar-publicacao', [CertificadoController::class, 'alterarPublicacao'])->name('certificados.alterar-publicacao');
         Route::delete('/{certificado}', [CertificadoController::class, 'destroy'])->name('certificados.destroy');
-
+        Route::get('/{certificado}/download', [CertificadoController::class, 'download'])->name('certificados.download');
     });
 
     Route::prefix('atividades')->group(function () {

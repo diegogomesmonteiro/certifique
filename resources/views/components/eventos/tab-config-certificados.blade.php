@@ -40,7 +40,7 @@
                         @foreach ($evento->configCertificados as $configCertificado)
                             <tr>
                                 <td>{{ $configCertificado->nome }}</td>
-                                <td>{{ $configCertificado->tipo->value }}</td>
+                                <td><span class="badge badge-{{$configCertificado->tipo->getColor()}}">{{ $configCertificado->tipo->value }}</span></td>
                                 <td>{{ $configCertificado->atividade->nome ?? 'Não possui' }}</td>
                                 <td class="d-flex gap-2 justify-content-center">
                                     <a href="{{ route('config-certificados.edit', $configCertificado) }}"

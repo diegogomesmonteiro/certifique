@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Evento;
-use Illuminate\Http\Request;
 use App\Models\AtividadeTipo;
 
 use App\Http\Requests\StoreEventoRequest;
@@ -55,7 +54,7 @@ class EventoController extends Controller
      * @param  \App\Models\Evento  $evento
      * @return \Illuminate\Http\Response
      */
-    public function show(Evento $evento, String $abaAtiva = 'atividades')
+    public function show(Evento $evento, String $abaAtiva = 'informacoes')
     {
         $atividadeTipos = AtividadeTipo::orderBy('nome')->get();
         return view('pages.eventos.show', [
@@ -73,7 +72,7 @@ class EventoController extends Controller
      */
     public function edit(Evento $evento)
     {
-        //
+        return view('pages.eventos.create', ['evento' => $evento]);
     }
 
     /**
@@ -85,7 +84,12 @@ class EventoController extends Controller
      */
     public function update(UpdateEventoRequest $request, Evento $evento)
     {
-        //
+        if ($evento->update($request->validated())) {
+            session()->flash('success', 'Evento atualizado com sucesso!');
+        } else {
+            session()->flash('danger', 'Erro ao atualizar evento!');
+        }
+        return redirect()->route('eventos.index');
     }
 
     /**
@@ -96,6 +100,15 @@ class EventoController extends Controller
      */
     public function destroy(Evento $evento)
     {
-        //
+        if($evento->atividades()->count() > 0) {
+            session()->flash('danger', 'Não é possível excluir um evento que possui atividades!');
+            return redirect()->back();
+        }
+        if ($evento->delete()) {
+            session()->flash('success', 'Evento excluído com sucesso!');
+        } else {
+            session()->flash('danger', 'Erro ao excluir evento!');
+        }
+        return redirect()->back();
     }
 }

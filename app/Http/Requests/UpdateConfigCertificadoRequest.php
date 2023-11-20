@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Enum;
 use App\Enums\TipoConfigCertificadoEnum;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -30,7 +31,7 @@ class UpdateConfigCertificadoRequest extends FormRequest
             'texto'=>'string|required',
             'tipo'=>[
                 'required',
-                'valor' => Rule::in(TipoConfigCertificadoEnum::getValues()),
+                'enum' => new Enum(TipoConfigCertificadoEnum::class),
             ],
             'atividade_id'=>'integer|nullable',
             'evento_id'=>'integer|required',
@@ -45,7 +46,7 @@ class UpdateConfigCertificadoRequest extends FormRequest
             'nome.required'=>'O nome é obrigatório',
             'texto.string'=>'O texto deve ser uma string',
             'texto.required'=>'O texto é obrigatório',
-            'tipo.valor'=>'O tipo não é válido',
+            'tipo.enum'=>'O tipo não é válido',
             'evento_id.integer'=>'O evento_id deve ser um inteiro',
             'evento_id.required'=>'O evento_id é obrigatório',
             'arquivo_layout.mimetypes'=>'O layout deve ser uma imagem',

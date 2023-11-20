@@ -93,7 +93,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'pt-br',
 
     /*
     |--------------------------------------------------------------------------
@@ -106,7 +106,7 @@ return [
     |
     */
 
-    'faker_locale' => 'en_US',
+    'faker_locale' => 'pt_br',
 
     /*
     |--------------------------------------------------------------------------
@@ -229,7 +229,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'TipoConfigCertificadoEnum' => App\Enums\TipoConfigCertificadoEnum::class,
-
+        'EventoTipoEnum' => App\Enums\EventoTipoEnum::class,
     ],
 
 ];

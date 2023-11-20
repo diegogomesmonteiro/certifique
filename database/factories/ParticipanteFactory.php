@@ -17,7 +17,9 @@ class ParticipanteFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'nome' => $this->faker->name(),
+            'cpf' => $this->faker->cpf(),
+            'email' => $this->faker->unique()->safeEmail(),
         ];
     }
 }
