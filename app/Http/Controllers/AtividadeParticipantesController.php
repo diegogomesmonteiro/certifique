@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Perfil;
 use App\Models\Atividade;
+use App\Models\Participante;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\AtividadeParticipante;
 use Illuminate\Support\Facades\Storage;
 use App\Imports\AtividadeParticipanteImport;
 use App\Http\Requests\StoreAtividadeParticipantesRequest;
-use App\Models\AtividadeParticipante;
-use App\Models\Participante;
+use App\Http\Requests\StoreAtividadeParticipanteImportRequest;
 
 class AtividadeParticipantesController extends Controller
 {
@@ -63,25 +64,47 @@ class AtividadeParticipantesController extends Controller
             session()->flash('danger', 'Participante não encontrado na atividade!');
             return redirect()->back();
         }
+        $qtdeCertificados = 0;
+        $configCertificadosDaAtividade = $atividade->configCertificados;
+        if ($configCertificadosDaAtividade->isNotEmpty()) {
+            foreach ($configCertificadosDaAtividade as $configCertificado) {
+                $qtdeCertificados += $participante->certificados()
+                    ->where('config_certificado_id', $configCertificado->id)
+                    ->count();
+            }
+            if ($qtdeCertificados > 0) {
+                session()->flash('danger', 'Participante possui certificado(s) gerado(s) para esta atividade!');
+                return redirect()->back();
+            }
+        } 
+        $configCertificadosGeral = $atividade->evento->configCertificados()
+        ->where('atividade_id', null)
+                ->get();
+        if($configCertificadosGeral->isNotEmpty()) {
+            foreach ($configCertificadosGeral as $configCertificadoGeral) {
+                $qtdeCertificados += $participante->certificados()
+                    ->where('config_certificado_id', $configCertificadoGeral->id)
+                    ->count();
+            }
+            if ($qtdeCertificados > 0) {
+                session()->flash('danger', 'Participante possui certificado(s) e tem que está cadastrado em pelo menos uma atividade!');
+                return redirect()->back();
+            }
+        }
         foreach ($atividadesParticipante as $atividadeParticipante) {
             $atividadeParticipante->delete();
         }
-        if($participante->atividades->count() == 0){
+        if ($participante->atividades->count() == 0) {
             $participante->delete();
         }
         session()->flash('success', 'Participante removido da atividade com sucesso!');
         return redirect()->back();
     }
 
-    public function import()
+    public function import(StoreAtividadeParticipanteImportRequest $request)
     {
-        $file = request()->file('file');
-        $extension = $file->getClientOriginalExtension();
-        if($extension != 'csv'){
-            session()->flash('danger', 'Extensão do arquivo inválida!');
-            return redirect()->back();
-        }
-        $path = $file->store('temporario');
+        $file = $request->file('file');
+        $path = $file->store('temporario/importacao');
         Excel::import(new AtividadeParticipanteImport, $path);
         Storage::delete($path);
         return redirect()->back()->with('success', 'Importação concluída.');

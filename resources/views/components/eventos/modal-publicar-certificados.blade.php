@@ -43,7 +43,7 @@
         listaCheckbox.innerHTML = ''
         participantesArray.forEach(participante => {
             const div = document.createElement('div')
-            div.className = 'form-check form-check-inline'
+            div.className = 'form-check mb-3'
             const input = document.createElement('input')
             input.className = 'form-check-input'
             input.type = 'checkbox'

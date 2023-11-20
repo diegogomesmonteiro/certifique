@@ -13,7 +13,7 @@ class StoreAtividadeParticipanteImportRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,21 @@ class StoreAtividadeParticipanteImportRequest extends FormRequest
      */
     public function rules()
     {
+        // dd(request()->file->getClientOriginalExtension());
         return [
-            //
+            'file' =>[
+                "required",
+                "mimes:xlsx,xls,csv"
+                
+            ]
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'file.required' => 'O arquivo é obrigatório',
+            'file.mimes' => "O arquivo deve ser do tipo: '.xlsx', '.xls' ou '.csv'",
         ];
     }
 }

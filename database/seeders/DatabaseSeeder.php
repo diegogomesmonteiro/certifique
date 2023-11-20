@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Perfil;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,6 +19,8 @@ class DatabaseSeeder extends Seeder
             PerfilSeeder::class,
             EventoSeeder::class,
             AtividadeSeeder::class,
+            ParticipanteSeeder::class,
+            AtividadeParticipanteSeeder::class,
             // PermissionsSeeder::class,
             // RolesSeeder::class,
         ]);

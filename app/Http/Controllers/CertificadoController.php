@@ -138,21 +138,17 @@ class CertificadoController extends Controller
         return json_encode($resposta);
     }
 
-    // public function gerarCertificado(Certificado $certificado)
-    // {
-    //     $participante = $certificado->participante;
-    //     $config_certificado = $certificado->configCertificado;
-    //     $evento = $config_certificado->evento;
-    //     $rotaDeRetorno = redirect()->route('eventos.show', [
-    //         'evento' => $evento,
-    //         'abaAtiva' => 'certificados',
-    //     ]);
-    //     if (!$certificado->gerado) {
-    //         $certificado->gerado = true;
-    //         $certificado->gerado_por_id = Auth::id();
-    //         if (!$certificado->update()) return $rotaDeRetorno->with('danger', 'Erro ao gerar certificado!');
-    //     }
-    //     $pdf = \PDF::loadView('certificados.pdf', compact('certificado', 'participante', 'config_certificado'));
-    //     return $pdf->stream('certificado.pdf');
-    // }
+
+    public function download(Certificado $certificado)
+    {
+        $configCertificado = $certificado->configCertificado;
+        $texto = $certificado->textoParaImpressao();
+        $pdf = \PDF::loadView('pages.eventos.certificados.template-download',[
+            'imagem' => $configCertificado->getPathLayout(),
+            'texto' => $texto,
+            'autenticacao' => $certificado->autenticacao,
+        ])
+        ->setPaper('a4', 'landscape');
+        return $pdf->stream('certificado.pdf');
+    }
 }

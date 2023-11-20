@@ -34,7 +34,7 @@
             }
         </style>
     @endsection
-    @section('titulo', 'Configuração de certificado: ' . $tipoConfigCertificado->value)
+    @section('titulo', 'Editar configuração de certificado: ' . $tipoConfigCertificado->value)
     <x-eventos.card-dados-evento :evento="$evento" />
     <div class="row mt-4">
         <div class="card mb-4 w-100">
@@ -42,8 +42,8 @@
                 @if (request()->routeIs('config-certificados.edit'))
                     <form action="{{ route('config-certificados.update', $configCertificado) }}" method="POST"
                         enctype="multipart/form-data">
-                        @method('PATCH')
-                    @else
+                    @method('PATCH')
+                @else
                         <form action="{{ route('config-certificados.store', $evento) }}" method="POST"
                             enctype="multipart/form-data">
                 @endif
@@ -69,8 +69,9 @@
                     <div class="row mb-4">
                         <div class="text-center">
                             <label class="form-label" for="atividade_id">Selecione a atividade</label>
-                            <select class="form-select form-select-solid" name="atividade_id" id="atividade_id" required>
-                                <option selected disabled value="" >Escolha a opção</option>
+                            <select class="form-select form-select-solid" name="atividade_id" id="atividade_id"
+                                required>
+                                <option selected disabled value="">Escolha a opção</option>
                                 @foreach ($evento->atividades as $atividade)
                                     <option value="{{ $atividade->id }}">{{ $atividade->nome }}</option>
                                 @endforeach

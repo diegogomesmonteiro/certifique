@@ -130,7 +130,7 @@ return array(
                 'custom' => array(
                     'js' => array(
                         'js\custom\pages\general\form.js',
-                        //'js\custom\pages\general\formMultStep.js',
+                        'js\custom\pages\general\formMultStep.js',
                     ),
                 ),
             ), 

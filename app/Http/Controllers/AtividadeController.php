@@ -97,12 +97,19 @@ class AtividadeController extends Controller
      */
     public function destroy(Atividade $atividade)
     {
-        $evento = $atividade->evento;
+        if($atividade->participantes()->count() > 0){
+            session()->flash('danger', 'Não é possível excluir atividade com participantes vinculados!');
+            return redirect()->back();
+        }
+        if($atividade->configCertificados()->count() > 0){
+            session()->flash('danger', 'Não é possível excluir atividade vinculada a uma configuração de certificado!');
+            return redirect()->back();
+        }
         if ($atividade->delete()) {
             session()->flash('success', 'Atividade excluída com sucesso!');
         } else {
             session()->flash('danger', 'Erro ao excluir atividade!');
         }
-        return redirect()->route('eventos.show', $evento);
+        return redirect()->back();
     }
 }

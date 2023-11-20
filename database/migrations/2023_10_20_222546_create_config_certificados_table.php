@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nome');
             $table->foreignId('evento_id')->constrained('eventos');
-            $table->foreignId('atividade_id')->constrained('atividades')->nullable();
+            $table->foreignId('atividade_id')->nullable()->constrained('atividades');
             $table->string('layout')->default('img/certificado.jpg');
             $table->text('texto');
             $table->string('tipo')->default('Geral');
