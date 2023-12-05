@@ -1,12 +1,4 @@
 <x-base-layout>
-    {{-- <script>
-        const btnAdd = document.getElementById('kt_toolbar_create_button');
-        btnAdd.href = "{{ route('eventos.create') }}";
-        btnAdd.addEventListener('click', function(e) {
-            window.location.href = "{{ route('eventos.create') }}";
-        });
-    </script> --}}
-
     <div class="row">
         @foreach ($eventos as $evento)
             <div class="col-sm-4 mb-6">

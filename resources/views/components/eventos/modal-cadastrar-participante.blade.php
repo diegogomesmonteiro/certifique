@@ -23,7 +23,8 @@
                     </div>
                     <div class="mb-3">
                         <input type="text" class="form-control form-control-solid" id="cpf" name="cpf" 
-                            placeholder="CPF"  required>
+                        maxlength="14" onkeypress="formatarCpf()"    
+                        placeholder="000.000.000-00"  required>
                     </div>
                     <div class="mb-3">
                         <input type="email" class="form-control form-control-solid" id="email" name="email" 
@@ -46,3 +47,14 @@
         </div>
     </div>
 </div>
+<script>
+    function formatarCpf() {
+        var cpf = document.getElementById('cpf').value;
+        if (cpf.length == 3 || cpf.length == 7) {
+            document.getElementById('cpf').value += '.';
+        }
+        if (cpf.length == 11) {
+            document.getElementById('cpf').value += '-';
+        }
+    }
+</script>

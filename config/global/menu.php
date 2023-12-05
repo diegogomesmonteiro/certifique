@@ -1,5 +1,7 @@
 <?php
 
+return include('menu-custom.php');
+
 return array(
     // Documentation menu
     'documentation' => array(
@@ -89,7 +91,7 @@ return array(
 
         // Changelog
         array(
-            'title'            => 'Changelog <span class="badge badge-changelog badge-light-danger bg-hover-danger text-hover-white fw-bold fs-9 px-2 ms-2">v'.theme()->getVersion().'</span>',
+            'title'            => 'Changelog <span class="badge badge-changelog badge-light-danger bg-hover-danger text-hover-white fw-bold fs-9 px-2 ms-2">v' . theme()->getVersion() . '</span>',
             'breadcrumb-title' => 'Changelog',
             'path'             => 'documentation/getting-started/changelog',
         ),
@@ -194,16 +196,47 @@ return array(
     // Main menu
     'main'          => array(
         //// Dashboard
-        array(
-            'title' => 'Dashboard',
-            'path'  => '',
-            'icon'  => theme()->getSvgIcon("demo1/media/icons/duotune/art/art002.svg", "svg-icon-2"),
-        ),
+        // array(
+        //     'title' => 'Dashboard',
+        //     'path'  => '',
+        //     'icon'  => theme()->getSvgIcon("demo1/media/icons/duotune/art/art002.svg", "svg-icon-2"),
+        // ),
 
         //// Modules
+        //Gestão de usuários
         array(
             'classes' => array('content' => 'pt-8 pb-2'),
-            'content' => '<span class="menu-section text-muted text-uppercase fs-8 ls-1">Administrador</span>',
+            'content' => '<span class="menu-section text-muted text-uppercase fs-8 ls-1">Gestão de Usuários</span>',
+            'role' => 'super-admin',
+        ),
+
+        //Gestão de usuários
+        array(
+            'title'      => 'Usuários',
+            'icon'       => array(
+                'svg'  => theme()->getSvgIcon("demo1/media/icons/duotune/communication/com006.svg", "svg-icon-2"),
+                'font' => '<i class="bi bi-person fs-2"></i>',
+            ),
+            'classes'    => array('item' => 'menu-accordion'),
+            'attributes' => array(
+                "data-kt-menu-trigger" => "click",
+            ),
+            'role' => 'super-admin',
+            'sub'        => array(
+                'class' => 'menu-sub-accordion',
+                'items' => array(
+                    array(
+                        'title'  => 'Gerenciar',
+                        'path'   => 'eventos',
+                        'bullet' => '<span class="bullet bullet-dot"></span>',
+                    ),
+                ),
+            ),
+        ),
+        array(
+            'classes' => array('content' => 'pt-8 pb-2'),
+            'content' => '<span class="menu-section text-muted text-uppercase fs-8 ls-1">Administração</span>',
+            'role' => 'admin|super-admin',
         ),
 
         //Eventos
@@ -217,8 +250,9 @@ return array(
             'attributes' => array(
                 "data-kt-menu-trigger" => "click",
             ),
+            'role' => 'admin|super-admin',
             'sub'        => array(
-                'class' => 'menu-sub-accordion menu-active-bg',
+                'class' => 'menu-sub-accordion',
                 'items' => array(
                     array(
                         'title'  => 'Cadastrar',
@@ -325,7 +359,7 @@ return array(
 
         // Changelog
         array(
-            'title' => 'Changelog v'.theme()->getVersion(),
+            'title' => 'Changelog v' . theme()->getVersion(),
             'icon'  => theme()->getSvgIcon("demo1/media/icons/duotune/general/gen005.svg", "svg-icon-2"),
             'path'  => 'documentation/getting-started/changelog',
         ),
@@ -360,7 +394,7 @@ return array(
 
                     // Changelog
                     array(
-                        'title' => 'Changelog v'.theme()->getVersion(),
+                        'title' => 'Changelog v' . theme()->getVersion(),
                         'icon'  => theme()->getSvgIcon("demo1/media/icons/duotune/general/gen005.svg", "svg-icon-2"),
                         'path'  => 'documentation/getting-started/changelog',
                     ),

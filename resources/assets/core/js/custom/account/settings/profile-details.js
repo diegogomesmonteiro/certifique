@@ -104,7 +104,6 @@ var KTAccountSettingsProfileDetails = function () {
     var handleForm = function () {
         submitButton.addEventListener('click', function (e) {
             e.preventDefault();
-
             validation.validate().then(function (status) {
                 if (status == 'Valid') {
 

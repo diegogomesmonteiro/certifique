@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\PermissionsEnum;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 
@@ -20,36 +21,44 @@ class PermissionsSeeder extends Seeder
 
         foreach ($data as $value) {
             Permission::create([
-                'name' => $value['name'],
+                'name' => $value,
             ]);
         }
     }
 
     public function data()
     {
-        $data = [];
+        return [
+            PermissionsEnum::GERENCIAR_USUARIOS,
+            PermissionsEnum::GERENCIAR_EVENTOS,
+            PermissionsEnum::VISUALIZAR_TODOS_EVENTOS,
+            PermissionsEnum::VISUALIZAR_EVENTOS_PROPRIOS,
+        ];
+    }
         // list of model permission
-        $model = ['content', 'user', 'role', 'permission'];
+    //     $model = [
+    //         'evento',
+    //     ];
 
-        foreach ($model as $value) {
-            foreach ($this->crudActions($value) as $action) {
-                $data[] = ['name' => $action];
-            }
-        }
+    //     foreach ($model as $value) {
+    //         foreach ($this->crudActions($value) as $action) {
+    //             $data[] = ['name' => $action];
+    //         }
+    //     }
 
-        return $data;
-    }
+    //     return $data;
+    // }
 
-    public function crudActions($name)
-    {
-        $actions = [];
-        // list of permission actions
-        $crud = ['create', 'read', 'update', 'delete'];
+    // public function crudActions($name)
+    // {
+    //     $actions = [];
+    //     // list of permission actions
+    //     $crud = ['create', 'read', 'update', 'delete'];
 
-        foreach ($crud as $value) {
-            $actions[] = $value.' '.$name;
-        }
+    //     foreach ($crud as $value) {
+    //         $actions[] = $value . ' ' . $name;
+    //     }
 
-        return $actions;
-    }
+    //     return $actions;
+    // }
 }

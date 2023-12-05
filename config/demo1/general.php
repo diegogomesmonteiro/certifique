@@ -86,7 +86,7 @@ return array(
         // Page title
         'page-title' => array(
             'display'               => true, // Display page title
-            'breadcrumb'            => true, // Display breadcrumb
+            'breadcrumb'            => false, // Display breadcrumb
             'description'           => false, // Display description
             'layout'                => 'default', // Set layout(default|select)
             'direction'             => 'row', // Flex direction(column|row))

@@ -130,15 +130,15 @@ return array(
                 'custom' => array(
                     'js' => array(
                         'js\custom\pages\general\form.js',
-                        'js\custom\pages\general\formMultStep.js',
+                        // 'js\custom\pages\general\formMultStep.js',
                     ),
                 ),
             ), 
         ),
     ),
 
-    'atividades' => array(
-        'title'  => 'Atividades',
+    // 'atividades' => array(
+    //     'title'  => 'Atividades',
         // 'create' => array(
         //     'title'  => 'Cadastrar Atividade',
         //     'layout' => array(
@@ -155,40 +155,40 @@ return array(
         //         ),
         //     ),             
         // ),
-        '6' => array(
-            'title'  => 'Detalhes da Atividades',
-            'layout' => array(
-                'toolbar' => array(
-                    'display' => true,
-                ),
-            ),
-            'assets' => array(
-                'custom' => array(
-                    'js' => array(
-                        'js\custom\pages\general\form.js',
-                        //'js\custom\pages\general\formMultStep.js',
-                    ),
-                ),
-            ),
+    //     '6' => array(
+    //         'title'  => 'Detalhes da Atividades',
+    //         'layout' => array(
+    //             'toolbar' => array(
+    //                 'display' => true,
+    //             ),
+    //         ),
+    //         'assets' => array(
+    //             'custom' => array(
+    //                 'js' => array(
+    //                     'js\custom\pages\general\form.js',
+    //                     //'js\custom\pages\general\formMultStep.js',
+    //                 ),
+    //             ),
+    //         ),
 
-            'participantes' => array(
-                'title'  => 'Detalhes do Evento',
-                'layout' => array(
-                    'toolbar' => array(
-                        'display' => false,
-                    ),
-                ),
-                'assets' => array(
-                    'custom' => array(
-                        'js' => array(
-                            'js\custom\pages\general\form.js',
-                            //'js\custom\pages\general\formMultStep.js',
-                        ),
-                    ),
-                ),
-            ),
-        ),
-    ),    
+    //         'participantes' => array(
+    //             'title'  => 'Detalhes do Evento',
+    //             'layout' => array(
+    //                 'toolbar' => array(
+    //                     'display' => false,
+    //                 ),
+    //             ),
+    //             'assets' => array(
+    //                 'custom' => array(
+    //                     'js' => array(
+    //                         'js\custom\pages\general\form.js',
+    //                         //'js\custom\pages\general\formMultStep.js',
+    //                     ),
+    //                 ),
+    //             ),
+    //         ),
+    //     ),
+    // ),    
 
     'account' => array(
         'overview' => array(
@@ -204,7 +204,12 @@ return array(
         ),
 
         'settings' => array(
-            'title'  => 'Account Settings',
+            'title'  => 'Meu Perfil',
+            'layout' => array(
+                'toolbar' => array(
+                    'display' => false,
+                ),
+            ),
             'assets' => array(
                 'custom' => array(
                     'js' => array(
@@ -218,13 +223,30 @@ return array(
     ),
 
     'users'         => array(
-        'title' => 'User List',
-
+        'title' => 'Gerenciar Usuários',
+        'layout' => array(
+            'toolbar' => array(
+                'display' => false,
+            ),
+        ),
         '*' => array(
-            'title' => 'Show User',
-
+            'title' => 'Gerenciar Usuários',
+            'assets' => array(
+                'custom' => array(
+                    'js' => array(
+                        'js/custom/account/settings/profile-details.js',
+                    ),
+                ),
+            ),
             'edit' => array(
                 'title' => 'Edit User',
+                'assets' => array(
+                    'custom' => array(
+                        'js' => array(
+
+                        ),
+                    ),
+                ),
             ),
         ),
     ),

@@ -3,7 +3,6 @@
     $menu = bootstrap()->getAsideMenu();
     \App\Core\Adapters\Menu::filterMenuPermissions($menu->items);
 @endphp
-
 <div
     class="hover-scroll-overlay-y my-5 my-lg-5"
     id="kt_aside_menu_wrapper"

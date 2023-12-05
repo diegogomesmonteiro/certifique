@@ -14,6 +14,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            PermissionsSeeder::class,
+            RolesSeeder::class,
             UsersSeeder::class,
             AtividadeTipoSeeder::class,
             PerfilSeeder::class,
@@ -21,8 +23,6 @@ class DatabaseSeeder extends Seeder
             AtividadeSeeder::class,
             ParticipanteSeeder::class,
             AtividadeParticipanteSeeder::class,
-            // PermissionsSeeder::class,
-            // RolesSeeder::class,
         ]);
     }
 }

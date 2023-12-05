@@ -17,7 +17,8 @@
                     </div>
                     <div class="mb-3">
                         <input type="text" class="form-control form-control-solid" id="editar_cpf" name="cpf" placeholder="CPF"
-                            required>
+                        onkeypress="formatarCpfEdicao()" maxlength="14"
+                        required>
                     </div>
                     <div class="mb-3">
                         <input type="email" class="form-control form-control-solid" id="editar_email" name="email" placeholder="E-mail"
@@ -57,5 +58,14 @@
 
     function editarData(data) {
         return data.split('/').reverse().join('-');
+    }
+    function formatarCpfEdicao() {
+        var cpf = document.getElementById('editar_cpf').value;
+        if (cpf.length == 3 || cpf.length == 7) {
+            document.getElementById('editar_cpf').value += '.';
+        }
+        if (cpf.length == 11) {
+            document.getElementById('editar_cpf').value += '-';
+        }
     }
 </script>
