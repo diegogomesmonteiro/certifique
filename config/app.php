@@ -230,6 +230,8 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'TipoConfigCertificadoEnum' => App\Enums\TipoConfigCertificadoEnum::class,
         'EventoTipoEnum' => App\Enums\EventoTipoEnum::class,
+        'RolesEnum' => App\Enums\RolesEnum::class,
+        'PermissionsEnum' => App\Enums\PermissionsEnum::class,
     ],
 
 ];

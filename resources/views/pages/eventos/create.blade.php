@@ -135,128 +135,141 @@
                 <div class="flex-row-fluid">
                     <!--begin::Form-->
                     @if (request()->routeIs('eventos.edit'))
+                        @php
+                            $nome = $evento->nome;
+                            $descricao = $evento->descricao;
+                            $data_inicio = $evento->data_inicio->format('Y-m-d');
+                            $data_fim = $evento->data_fim->format('Y-m-d');
+                            $carga_horaria = $evento->carga_horaria;
+                            $local = $evento->local;
+                        @endphp
                         <form class="form w-lg mx-auto" action="{{ route('eventos.update', $evento) }}" method="POST">
                             @method('PATCH')
                         @else
-                            <form class="form w-lg mx-auto" action="{{ route('eventos.store')}}" method="POST">
+                            @php
+                                $nome = old('nome');
+                                $descricao = old('descricao');
+                                $data_inicio = old('data_inicio');
+                                $data_fim = old('data_fim');
+                                $carga_horaria = old('carga_horaria');
+                                $local = old('local');
+                            @endphp
+                            <form class="form w-lg mx-auto" action="{{ route('eventos.store') }}" method="POST">
                     @endif
-                        @csrf
-                        <!--begin::Group-->
-                        <div class="mb-5">
-                            <!--begin::Step 1-->
-                            <div class="flex-column current" data-kt-stepper-element="content">
-                                @foreach (EventoTipoEnum::cases() as $eventoTipo)
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-5">
-                                        <!--begin::Option-->
-                                        @if (request()->routeIs('eventos.edit'))
+                    @csrf
+                    <!--begin::Group-->
+                    <div class="mb-5">
+                        <!--begin::Step 1-->
+                        <div class="flex-column current" data-kt-stepper-element="content">
+                            @foreach (EventoTipoEnum::cases() as $eventoTipo)
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-5">
+                                    <!--begin::Option-->
+                                    @if (request()->routeIs('eventos.edit'))
                                         <input type="radio" class="btn-check" name="tipo"
                                             value="{{ $eventoTipo->value }}" id="radio-{{ $eventoTipo->value }}"
                                             {{ $evento->tipo == $eventoTipo ? 'checked' : '' }} />
-                                        @else
+                                    @else
                                         <input type="radio" class="btn-check" name="tipo"
                                             value="{{ $eventoTipo->value }}" id="radio-{{ $eventoTipo->value }}"
                                             {{ $loop->first ? 'checked' : '' }} />
-                                        @endif
-                                        <label
-                                            class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center"
-                                            for="radio-{{ $eventoTipo->value }}">
-                                            <i class="{{ $eventoTipo->getIconClass() }} fs-3x me-4"></i>
-                                            <span class="d-block fw-semibold text-start">
-                                                <span
-                                                    class="text-dark fw-bold d-block fs-6">{{ $eventoTipo->value }}</span>
-                                                <span class="text-muted fw-semibold fs-6">
-                                                    <small> {{ $eventoTipo->getDescricao() }}</small>
-                                                </span>
+                                    @endif
+                                    <label
+                                        class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center"
+                                        for="radio-{{ $eventoTipo->value }}">
+                                        <i class="{{ $eventoTipo->getIconClass() }} fs-3x me-4"></i>
+                                        <span class="d-block fw-semibold text-start">
+                                            <span
+                                                class="text-dark fw-bold d-block fs-6">{{ $eventoTipo->value }}</span>
+                                            <span class="text-muted fw-semibold fs-6">
+                                                <small> {{ $eventoTipo->getDescricao() }}</small>
                                             </span>
-                                        </label>
-                                        <!--end::Option-->
-                                    </div>
-                                    <!--end::Input group-->
-                                @endforeach
+                                        </span>
+                                    </label>
+                                    <!--end::Option-->
+                                </div>
+                                <!--end::Input group-->
+                            @endforeach
+                        </div>
+                        <!--begin::Step 1-->
+
+                        <!--begin::Step 2-->
+                        <div class="flex-column" data-kt-stepper-element="content">
+                            <!--begin::Input group-->
+                            <div class="fv-row mb-10">
+                                <!--begin::Label-->
+                                <label class="form-label" for="nome">Nome</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" class="form-control form-control-solid" id="nome"
+                                    name="nome" placeholder="" value="{{ $nome }}" required />
+                                <!--end::Input-->
                             </div>
-                            <!--begin::Step 1-->
+                            <!--end::Input group-->
 
-                            <!--begin::Step 2-->
-                            <div class="flex-column" data-kt-stepper-element="content">
-                                <!--begin::Input group-->
-                                <div class="fv-row mb-10">
-                                    <!--begin::Label-->
-                                    <label class="form-label" for="nome">Nome</label>
-                                    <!--end::Label-->
-
-                                    <!--begin::Input-->
-                                    <input type="text" class="form-control form-control-solid" id="nome"
-                                        name="nome" placeholder="" value="{{ $evento->nome ?? old('nome') }}" required />
-                                    <!--end::Input-->
-                                </div>
-                                <!--end::Input group-->
-
-                                <!--begin::Input group-->
-                                <div class="fv-row mb-10">
-                                    <!--begin::Label-->
-                                    <label class="form-label" for="descricao">Descrição</label>
-                                    <!--end::Label-->
-                                    <!--begin::Input-->
-                                    <textarea class="form-control form-control-solid" rows="2" maxlength="300" id="descricao" name="descricao"
-                                        placeholder="" value="{{ $evento->descricao ?? old('descricao') }}" required>{{$evento->descricao}}</textarea>
-                                    <!--end::Input-->
-                                </div>
-                                <!--end::Input group-->
-
-                                <!--begin::Input group-->
-                                <div class="fv-row d-flex justify-content-between mb-10">
-                                    <div>
-                                        <!--begin::Label-->
-                                        <label class="form-label" for="data_inicio">Início</label>
-                                        <!--end::Label-->
-
-                                        <!--begin::Input-->
-                                        <input type="date" class="form-control form-control-solid" id="data_inicio"
-                                            name="data_inicio" placeholder="" value="{{ $evento->data_inicio->format('Y-m-d') ?? old('data_inicio') }}"
-                                            required />
-                                        <!--end::Input-->
-                                    </div>
-                                    <div>
-                                        <!--begin::Label-->
-                                        <label class="form-label" for="data_fim">Fim</label>
-                                        <!--end::Label-->
-
-                                        <!--begin::Input-->
-                                        <input type="date" class="form-control form-control-solid" id="data_fim"
-                                            name="data_fim" placeholder="" value="{{ $evento->data_fim->format('Y-m-d') ?? old('data_inicio') }}" required />
-                                        <!--end::Input-->
-                                    </div>
-                                    <div>
-                                        <!--begin::Label-->
-                                        <label class="form-label" for="carga_horaria">Carga horária (horas)</label>
-                                        <!--end::Label-->
-
-                                        <!--begin::Input-->
-                                        <input type="number" step="1" min="0"
-                                            class="form-control form-control-solid" id="carga_horaria"
-                                            name="carga_horaria" placeholder="" value="{{ $evento->carga_horaria ?? old('carga_horaria') }}"
-                                            required />
-                                        <!--end::Input-->
-                                    </div>
-                                </div>
-                                <!--end::Input group-->
-                                <!--begin::Input group-->
-                                <div class="fv-row mb-4">
-                                    <!--begin::Label-->
-                                    <label class="form-label" for="local">Município/UF</label>
-                                    <!--end::Label-->
-
-                                    <!--begin::Input-->
-                                    <input type="text" class="form-control form-control-solid" id="local"
-                                        name="local" placeholder="" value="{{ $evento->local ?? old('local') }}" required />
-                                    <!--end::Input-->
-                                </div>
-                                <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="fv-row mb-10">
+                                <!--begin::Label-->
+                                <label class="form-label" for="descricao">Descrição</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <textarea class="form-control form-control-solid" rows="2" maxlength="300" id="descricao" name="descricao"
+                                    placeholder="" value="{{ $descricao }}" required>{{ $descricao }}</textarea>
+                                <!--end::Input-->
                             </div>
-                            <!--end::Step 2-->
+                            <!--end::Input group-->
 
-                            {{--                                 
+                            <!--begin::Input group-->
+                            <div class="fv-row d-flex justify-content-between mb-10">
+                                <div>
+                                    <!--begin::Label-->
+                                    <label class="form-label" for="data_inicio">Início</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <input type="date" class="form-control form-control-solid" id="data_inicio"
+                                        name="data_inicio" placeholder="" value="{{ $data_inicio}}"
+                                        required />
+                                    <!--end::Input-->
+                                </div>
+                                <div>
+                                    <!--begin::Label-->
+                                    <label class="form-label" for="data_fim">Fim</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <input type="date" class="form-control form-control-solid" id="data_fim"
+                                        name="data_fim" placeholder="" value="{{ $data_fim }}"
+                                        required />
+                                    <!--end::Input-->
+                                </div>
+                                <div>
+                                    <!--begin::Label-->
+                                    <label class="form-label" for="carga_horaria">Carga horária (horas)</label>
+                                    <!--end::Label-->
+
+                                    <!--begin::Input-->
+                                    <input type="number" step="1" min="0"
+                                        class="form-control form-control-solid" id="carga_horaria" name="carga_horaria"
+                                        placeholder="" value="{{ $carga_horaria }}" required />
+                                    <!--end::Input-->
+                                </div>
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="fv-row mb-4">
+                                <!--begin::Label-->
+                                <label class="form-label" for="local">Município/UF</label>
+                                <!--end::Label-->
+
+                                <!--begin::Input-->
+                                <input type="text" class="form-control form-control-solid" id="local"
+                                    name="local" placeholder="" value="{{ $local }}" required />
+                                <!--end::Input-->
+                            </div>
+                            <!--end::Input group-->
+                        </div>
+                        <!--end::Step 2-->
+
+                        {{--                                 
 
 
 
@@ -278,9 +291,9 @@
                                 </div>
                                 <!--end::Input group--> --}}
 
-                            <!--begin::Step 1-->
+                        <!--begin::Step 1-->
 
-                            {{-- <!--begin::Step 1-->
+                        {{-- <!--begin::Step 1-->
                             <div class="flex-column" data-kt-stepper-element="content">
                                 <!--begin::Input group-->
                                 <div class="fv-row mb-10">
@@ -366,44 +379,43 @@
                                 <!--end::Input group-->
                             </div>
                             <!--begin::Step 1--> --}}
+                    </div>
+                    <!--end::Group-->
+
+                    <!--begin::Actions-->
+                    <div class="d-flex flex-stack">
+                        <!--begin::Wrapper-->
+                        <div class="me-2">
+                            <button type="button" class="btn btn-light btn-active-light-primary"
+                                data-kt-stepper-action="previous">
+                                Voltar
+                            </button>
                         </div>
-                        <!--end::Group-->
+                        <!--end::Wrapper-->
 
-                        <!--begin::Actions-->
-                        <div class="d-flex flex-stack">
-                            <!--begin::Wrapper-->
-                            <div class="me-2">
-                                <button type="button" class="btn btn-light btn-active-light-primary"
-                                    data-kt-stepper-action="previous">
-                                    Voltar
-                                </button>
-                            </div>
-                            <!--end::Wrapper-->
+                        <!--begin::Wrapper-->
+                        <div>
+                            <a href="{{ route('eventos.index') }}" class="btn btn-sm btn-danger">
+                                Cancelar
+                            </a>
 
-                            <!--begin::Wrapper-->
-                            <div>
-                                <a href="{{ route('eventos.index') }}" class="btn btn-sm btn-danger">
-                                    Cancelar
-                                </a>
+                            <button type="submit" class="btn btn-sm btn-primary" data-kt-stepper-action="submit">
+                                <span class="indicator-label">
+                                    Salvar
+                                </span>
+                                <span class="indicator-progress">
+                                    Processando... <span
+                                        class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                </span>
+                            </button>
 
-                                <button type="submit" class="btn btn-sm btn-primary"
-                                    data-kt-stepper-action="submit">
-                                    <span class="indicator-label">
-                                        Salvar
-                                    </span>
-                                    <span class="indicator-progress">
-                                        Processando... <span
-                                            class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                                    </span>
-                                </button>
+                            <button type="button" class="btn btn-sm btn-primary" data-kt-stepper-action="next">
+                                Avançar
+                            </button>
 
-                                <button type="button" class="btn btn-sm btn-primary" data-kt-stepper-action="next">
-                                    Avançar
-                                </button>
-
-                            </div>
-                            <!--end::Wrapper-->
                         </div>
+                        <!--end::Wrapper-->
+                    </div>
                 </div>
             </div>
             <!--end::Actions-->

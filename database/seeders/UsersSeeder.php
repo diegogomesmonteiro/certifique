@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\RolesEnum;
 use App\Models\User;
 use App\Models\UserInfo;
 use Faker\Generator;
@@ -17,27 +18,33 @@ class UsersSeeder extends Seeder
      */
     public function run(Generator $faker)
     {
-        $demoUser = User::create([
-            'first_name'        => $faker->firstName,
-            'last_name'         => $faker->lastName,
-            'email'             => 'demo@demo.com',
-            'password'          => Hash::make('demo'),
-            'email_verified_at' => now(),
-        ]);
-
-        $this->addDummyInfo($faker, $demoUser);
-
-        $demoUser2 = User::create([
+        $superAdmin = User::create([
             'first_name'        => 'Diego',
             'last_name'         => 'Gomes Monteiro',
             'email'             => 'admin@ifnmg.edu.br',
             'password'          => Hash::make('demo'),
             'email_verified_at' => now(),
         ]);
+        $superAdmin->assignRole([
+            RolesEnum::SUPER_ADMIN->value,
+        ]);
+        $this->addDummyInfo($faker, $superAdmin);
 
-        $this->addDummyInfo($faker, $demoUser2);
+        $admin = User::create([
+            'first_name'        => $faker->firstName,
+            'last_name'         => $faker->lastName,
+            'email'             => 'demo@demo.com',
+            'password'          => Hash::make('demo'),
+            'email_verified_at' => now(),
+        ]);
+        $admin->assignRole([
+            RolesEnum::ADMIN->value,
+        ]);
+        $this->addDummyInfo($faker, $admin);
+
 
         User::factory(100)->create()->each(function (User $user) use ($faker) {
+            $user->assignRole(RolesEnum::USER->value);
             $this->addDummyInfo($faker, $user);
         });
     }
@@ -45,11 +52,8 @@ class UsersSeeder extends Seeder
     private function addDummyInfo(Generator $faker, User $user)
     {
         $dummyInfo = [
-            'company'  => $faker->company,
+            'cpf'      => $faker->cpf(),
             'phone'    => $faker->phoneNumber,
-            'website'  => $faker->url,
-            'language' => $faker->languageCode,
-            'country'  => $faker->countryCode,
         ];
 
         $info = new UserInfo();

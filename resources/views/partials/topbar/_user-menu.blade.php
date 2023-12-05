@@ -13,7 +13,7 @@
             <div class="d-flex flex-column">
                 <div class="fw-bolder d-flex align-items-center fs-5">
                     {{ auth()->user()->name }}
-                    <span class="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">Pro</span>
+                    {{-- <span class="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">Pro</span> --}}
                 </div>
                 <a href="#" class="fw-bold text-muted text-hover-primary fs-7">{{ auth()->user()->email }}</a>
             </div>
@@ -29,12 +29,12 @@
     <!--begin::Menu item-->
     <div class="menu-item px-5">
         <a href="{{ theme()->getPageUrl('settings.index') }}" class="menu-link px-5">
-            {{ __('My Profile') }}
+            {{ __('Meu perfil') }}
         </a>
     </div>
     <!--end::Menu item-->
 
-    <!--begin::Menu item-->
+    {{-- <!--begin::Menu item-->
     <div class="menu-item px-5">
         <a href="#" class="menu-link px-5" data-bs-toggle="tooltip" data-bs-placement="left" title="{{ __('Coming soon') }}">
             <span class="menu-text">{{ __('My Projects') }}</span>
@@ -107,13 +107,13 @@
         </div>
         <!--end::Menu sub-->
     </div>
-    <!--end::Menu item-->
+    <!--end::Menu item--> --}}
 
     <!--begin::Menu item-->
     <div class="menu-item px-5" data-bs-toggle="tooltip" data-bs-placement="left" title="{{ __('Coming soon') }}">
-        <a href="#" class="menu-link px-5">
+        {{-- <a href="#" class="menu-link px-5">
             {{ __('My Statements') }}
-        </a>
+        </a> --}}
     </div>
     <!--end::Menu item-->
 
@@ -123,7 +123,7 @@
 
     <!--begin::Menu item-->
     <div class="menu-item px-5" data-kt-menu-trigger="hover" data-kt-menu-placement="left-start">
-        <a href="#" class="menu-link px-5">
+        {{-- <a href="#" class="menu-link px-5">
             <span class="menu-title position-relative">
                 {{ __('Language') }}
 
@@ -131,62 +131,62 @@
                     {{ __('English') }} <img class="w-15px h-15px rounded-1 ms-2" src="{{ asset(theme()->getMediaUrlPath() . 'flags/united-states.svg') }}" alt="metronic"/>
                 </span>
             </span>
-        </a>
+        </a> --}}
 
         <!--begin::Menu sub-->
         <div class="menu-sub menu-sub-dropdown w-175px py-4">
             <!--begin::Menu item-->
-            <div class="menu-item px-3">
+            {{-- <div class="menu-item px-3">
                 <a href="#" class="menu-link d-flex px-5 active">
                     <span class="symbol symbol-20px me-4">
                         <img class="rounded-1" src="{{ asset(theme()->getMediaUrlPath() . 'flags/united-states.svg') }}" alt="metronic"/>
                     </span>
                     {{ __('English') }}
                 </a>
-            </div>
+            </div> --}}
             <!--end::Menu item-->
 
             <!--begin::Menu item-->
             <div class="menu-item px-3">
-                <a href="#" class="menu-link d-flex px-5">
+                {{-- <a href="#" class="menu-link d-flex px-5">
                     <span class="symbol symbol-20px me-4">
                         <img class="rounded-1" src="{{ asset(theme()->getMediaUrlPath() . 'flags/spain.svg') }}" alt="metronic"/>
                     </span>
                     {{ __('Spanish') }}
-                </a>
+                </a> --}}
             </div>
             <!--end::Menu item-->
 
             <!--begin::Menu item-->
             <div class="menu-item px-3">
-                <a href="#" class="menu-link d-flex px-5">
+                {{-- <a href="#" class="menu-link d-flex px-5">
                     <span class="symbol symbol-20px me-4">
                         <img class="rounded-1" src="{{ asset(theme()->getMediaUrlPath() . 'flags/germany.svg') }}" alt="metronic"/>
                     </span>
                     {{ __('German') }}
-                </a>
+                </a> --}}
             </div>
             <!--end::Menu item-->
 
             <!--begin::Menu item-->
             <div class="menu-item px-3">
-                <a href="#" class="menu-link d-flex px-5">
+                {{-- <a href="#" class="menu-link d-flex px-5">
                     <span class="symbol symbol-20px me-4">
                         <img class="rounded-1" src="{{ asset(theme()->getMediaUrlPath() . 'flags/japan.svg') }}" alt="metronic"/>
                     </span>
                     {{ __('Japanese') }}
-                </a>
+                </a> --}}
             </div>
             <!--end::Menu item-->
 
             <!--begin::Menu item-->
             <div class="menu-item px-3">
-                <a href="#" class="menu-link d-flex px-5">
+                {{-- <a href="#" class="menu-link d-flex px-5">
                     <span class="symbol symbol-20px me-4">
                         <img class="rounded-1" src="{{ asset(theme()->getMediaUrlPath() . 'flags/france.svg') }}" alt="metronic"/>
                     </span>
                     {{ __('French') }}
-                </a>
+                </a> --}}
             </div>
             <!--end::Menu item-->
         </div>
@@ -196,21 +196,21 @@
 
     <!--begin::Menu item-->
     <div class="menu-item px-5 my-1">
-        <a href="{{ theme()->getPageUrl('settings.index') }}" class="menu-link px-5">
+        {{-- <a href="{{ theme()->getPageUrl('settings.index') }}" class="menu-link px-5">
             {{ __('Account Settings') }}
-        </a>
+        </a> --}}
     </div>
     <!--end::Menu item-->
 
     <!--begin::Menu item-->
     <div class="menu-item px-5">
         <a href="#" data-action="{{ theme()->getPageUrl('logout') }}" data-method="post" data-csrf="{{ csrf_token() }}" data-reload="true" class="button-ajax menu-link px-5">
-            {{ __('Sign Out') }}
+            {{ __('Sair') }}
         </a>
     </div>
     <!--end::Menu item-->
 
-    @if (theme()->isDarkModeEnabled())
+    {{-- @if (theme()->isDarkModeEnabled())
         <!--begin::Menu separator-->
         <div class="separator my-2"></div>
         <!--end::Menu separator-->
@@ -229,6 +229,6 @@
             </div>
         </div>
         <!--end::Menu item-->
-    @endif
+    @endif --}}
 </div>
 <!--end::Menu-->

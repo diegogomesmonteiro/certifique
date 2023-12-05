@@ -51,11 +51,11 @@
 
     {{--begin::Footer--}}
     <div class="aside-footer flex-column-auto pt-5 pb-7 px-5" id="kt_aside_footer">
-        <a href="{{ theme()->getPageUrl('documentation/getting-started/overview') }}" class="btn btn-custom btn-primary w-100" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-delay-show="8000" title="Check out the complete documentation with over 100 components">
+        <a  data-action="{{ theme()->getPageUrl('logout') }}" data-method="post" data-csrf="{{ csrf_token() }}" data-reload="true" class="button-ajax btn btn-success w-100 fw-bold">
         <span class="btn-label">
-            {{ __('Documentation') }}
+            {{ __('Sair') }}
         </span>
-            {!! theme()->getSvgIcon("icons/duotune/general/gen005.svg", "btn-icon, svg-icon-2") !!}
+            {!! theme()->getSvgIcon("icons/duotune/arrows/arr080.svg", "btn-icon, svg-icon-2") !!}
         </a>
     </div>
     {{--end::Footer--}}

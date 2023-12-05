@@ -61,10 +61,10 @@ var KTAccountSettingsSigninMethods = function () {
                     email: {
                         validators: {
                             notEmpty: {
-                                message: 'Email is required'
+                                message: 'E-mail é obrigatório'
                             },
                             emailAddress: {
-                                message: 'The value is not a valid email address'
+                                message: 'O valor informado não é um e-mail válido'
                             }
                         }
                     },
@@ -72,7 +72,7 @@ var KTAccountSettingsSigninMethods = function () {
                     password: {
                         validators: {
                             notEmpty: {
-                                message: 'Password is required'
+                                message: 'Senha é obrigatória'
                             }
                         }
                     }
@@ -127,7 +127,7 @@ var KTAccountSettingsSigninMethods = function () {
                                     text: dataMessage,
                                     icon: "error",
                                     buttonsStyling: false,
-                                    confirmButtonText: "Ok, got it!",
+                                    confirmButtonText: "Continuar",
                                     customClass: {
                                         confirmButton: "btn btn-primary"
                                     }

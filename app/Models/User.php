@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Core\Traits\SpatieLogsActivity;
+use App\Enums\RolesEnum;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -78,7 +79,16 @@ class User extends Authenticatable implements MustVerifyEmail
             return asset($this->info->avatar_url);
         }
 
-        return asset(theme()->getMediaUrlPath().'avatars/blank.png');
+        return asset(theme()->getMediaUrlPath() . 'avatars/blank.png');
+    }
+
+    public function getCpfAttribute()
+    {
+        if ($this->info) {
+            return $this->info->cpf;
+        }
+
+        return null;
     }
 
     /**
@@ -89,5 +99,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function info()
     {
         return $this->hasOne(UserInfo::class);
+    }
+
+    public function getRoleAttribute(): RolesEnum
+    {
+        $role = $this->roles[0]->name;
+        return RolesEnum::from($role);
     }
 }

@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Account;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Account\SettingsEmailRequest;
-use App\Http\Requests\Account\SettingsInfoRequest;
-use App\Http\Requests\Account\SettingsPasswordRequest;
+use App\Models\User;
 use App\Models\UserInfo;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\Account\SettingsInfoRequest;
+use App\Http\Requests\Account\SettingsEmailRequest;
+use App\Http\Requests\Account\SettingsPasswordRequest;
 
 class SettingsController extends Controller
 {
@@ -19,10 +20,10 @@ class SettingsController extends Controller
      */
     public function index()
     {
-        $info = auth()->user()->info;
-
+        $user = auth()->user();
+        $info = $user->info;
         // get the default inner page
-        return view('pages.account.settings.settings', compact('info'));
+        return view('pages.account.settings.settings', ['user' => $user, 'info' => $info]);
     }
 
     /**
@@ -35,16 +36,16 @@ class SettingsController extends Controller
      */
     public function update(SettingsInfoRequest $request)
     {
+        $usuario = User::find($request->user_id);
         // save user name
         $validated = $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name'  => 'required|string|max:255',
         ]);
-
-        auth()->user()->update($validated);
+        $usuario->update($validated);
 
         // save on user info
-        $info = UserInfo::where('user_id', auth()->user()->id)->first();
+        $info = UserInfo::where('user_id', $usuario->id)->first();
 
         if ($info === null) {
             // create new model
@@ -52,7 +53,7 @@ class SettingsController extends Controller
         }
 
         // attach this info to the current user
-        $info->user()->associate(auth()->user());
+        $info->user()->associate($usuario);
 
         foreach ($request->only(array_keys($request->rules())) as $key => $value) {
             if (is_array($value)) {
@@ -71,7 +72,7 @@ class SettingsController extends Controller
             $info->avatar = null;
         }
 
-        $info->save();
+        $info->update();
 
         return redirect()->intended('account/settings');
     }

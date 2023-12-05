@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Enums\RolesEnum;
 use Illuminate\Http\Request;
-
+use App\Enums\PermissionsEnum;
 class UsersController extends Controller
 {
     /**
@@ -14,9 +15,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $config = theme()->getOption('page');
-
-        return User::all();
+        $user = User::orderBy('first_name')->get();
+        return view('pages.users.index', ['users' => $user]);
     }
 
     /**
@@ -51,7 +51,7 @@ class UsersController extends Controller
     public function show($id)
     {
         $config = theme()->getOption('page');
-
+        dd($config);
         return User::find($id);
     }
 
@@ -64,9 +64,9 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $config = theme()->getOption('page', 'edit');
-
-        return User::find($id);
+        $user = User::find($id);
+        $info = $user->info;
+        return view('pages.account.settings.settings', ['user' => $user, 'info' => $info]);
     }
 
     /**
@@ -91,6 +91,38 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        if (!$user) {
+            session()->flash('danger', 'Usuário não encontrado!');
+            return redirect()->back();
+        }
+        if ($user->id == auth()->user()->id) {
+            session()->flash('danger', 'Você não pode excluir seu próprio usuário!');
+            return redirect()->back();
+        }
+        if($user->info){
+            $user->info->delete();
+        }
+        if($user->delete()){
+            session()->flash('success', 'Usuário excluído com sucesso!');
+        } else {
+            session()->flash('danger', 'Erro ao excluir usuário!');
+        }
+        return redirect()->back();
+    }
+
+    public function alterarFuncao(Request $request)
+    {
+        $user = User::find($request->usuario);
+        if (!$user) {
+            $resposta['success'] = false;
+            $resposta['message'] = 'Usuário não encontrado!';
+            return json_encode($resposta);
+        }
+        $novaRole = RolesEnum::from($request->funcao);
+        $user->syncRoles($novaRole->value);
+        $resposta['success'] = true;
+        $resposta['message'] = 'Função atualizada!';
+        return json_encode($resposta);
     }
 }

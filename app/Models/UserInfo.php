@@ -5,16 +5,51 @@ namespace App\Models;
 use App\Core\Traits\SpatieLogsActivity;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class UserInfo extends Model
 {
     use SpatieLogsActivity;
 
-    /**
-     * Prepare proper error handling for url attribute
-     *
-     * @return string
-     */
+    protected $fillable = [
+        'user_id',
+        'avatar',
+        'cpf',
+        'phone',
+        'endereco',
+        'cidade',
+    ];
+
+    protected function cpf(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => $this->formatarCpf($value),
+            set: fn ($value) => $this->limparCpf($value),
+        );
+    }
+
+    private function formatarCpf($value)
+    {
+        $CPF_LENGTH = 11;
+        $cnpj_cpf = preg_replace("/\D/", '', $value);
+
+        if (strlen($cnpj_cpf) === $CPF_LENGTH) {
+            return preg_replace("/(\d{3})(\d{3})(\d{3})(\d{2})/", "\$1.\$2.\$3-\$4", $cnpj_cpf);
+        }
+
+        return preg_replace("/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/", "\$1.\$2.\$3/\$4-\$5", $cnpj_cpf);
+    }
+
+    private function limparCpf($value)
+    {
+        $value = trim($value);
+        $value = str_replace(".", "", $value);
+        $value = str_replace(",", "", $value);
+        $value = str_replace("-", "", $value);
+        $value = str_replace("/", "", $value);
+        return $value;
+    }
+
     public function getAvatarUrlAttribute()
     {
         // if file avatar exist in storage folder

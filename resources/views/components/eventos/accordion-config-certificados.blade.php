@@ -79,7 +79,7 @@
             const id = $(this).val();
             $.ajax({
                 url: "{{ route('certificados.alterar-publicacao') }}",
-                method: "POST",
+                method: "PATCH",
                 dataType: "json",
                 data: {
                     "_token": "{{ csrf_token() }}",

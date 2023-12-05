@@ -88,25 +88,25 @@ var KTAccountSettingsProfileDetails = function () {
     var handleForm = function () {
         submitButton.addEventListener('click', function (e) {
             e.preventDefault();
-
             // Validate form
             validation.validate().then(function (status) {
+                
                 if (status === 'Valid') {
                     // Show loading indication
                     submitButton.setAttribute('data-kt-indicator', 'on');
-
+                    
                     // Disable button to avoid multiple click
                     submitButton.disabled = true;
-
+                    
                     // Send ajax request
                     axios.post(submitButton.closest('form').getAttribute('action'), new FormData(form))
                         .then(function (response) {
                             // Show message popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
                             Swal.fire({
-                                text: "Thank you! You've updated your basic info",
+                                text: "Você atualizou com sucesso as informações básicas!",
                                 icon: "success",
                                 buttonsStyling: false,
-                                confirmButtonText: "Ok, got it!",
+                                confirmButtonText: "Continuar",
                                 customClass: {
                                     confirmButton: "btn btn-primary"
                                 }
