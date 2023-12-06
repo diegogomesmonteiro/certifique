@@ -17,6 +17,7 @@ use App\Http\Controllers\ConfigCertificadosController;
 use App\Http\Controllers\Auth\SocialiteLoginController;
 use App\Http\Controllers\AtividadeParticipantesController;
 use App\Http\Controllers\Documentation\ReferencesController;
+use App\Http\Controllers\MeusCertificadosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -109,8 +110,7 @@ Route::middleware('auth')->group(function () {
             ->can(PermissionsEnum::GERENCIAR_EVENTOS->value);
         Route::delete('{certificado}', [CertificadoController::class, 'destroy'])->name('certificados.destroy')
             ->can(PermissionsEnum::GERENCIAR_EVENTOS->value);
-        Route::get('{certificado}/download', [CertificadoController::class, 'download'])->name('certificados.download')
-            ->can(PermissionsEnum::GERENCIAR_EVENTOS->value);
+        Route::get('{certificado}/download', [CertificadoController::class, 'download'])->name('certificados.download');
     });
 
     Route::prefix('atividades')->group(function () {
@@ -134,6 +134,11 @@ Route::middleware('auth')->group(function () {
     Route::prefix('participantes')->group(function () {
         Route::patch('{participante}', [ParticipanteController::class, 'update'])->name('participantes.update')
             ->can(PermissionsEnum::GERENCIAR_EVENTOS->value);
+    });
+
+    Route::prefix('meus-certificados')->group(function () {
+        Route::get('/', [MeusCertificadosController::class, 'index'])->name('meus-certificados.index');
+        Route::get('{evento}', [MeusCertificadosController::class, 'show'])->name('meus-certificados.show');
     });
 
     // Logs pages

@@ -84,11 +84,18 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getCpfAttribute()
     {
-        if ($this->info) {
-            return $this->info->cpf;
+        if (!$this->info) {
+            return null;
         }
+        return $this->info->cpf;
+    }
 
-        return null;
+    public function getCpfNaoFormatado()
+    {
+        if (!$this->info) {
+            return null;
+        }
+        return $this->info->getCpfNaoFormatado();
     }
 
     /**
@@ -105,5 +112,13 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $role = $this->roles[0]->name;
         return RolesEnum::from($role);
+    }
+
+    public function getParticipanteAttribute()
+    {
+        if (!$this->cpf) {
+            return null;
+        }
+        return Participante::where('cpf', $this->getCpfNaoFormatado())->first();
     }
 }

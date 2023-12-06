@@ -28,6 +28,11 @@ class UserInfo extends Model
         );
     }
 
+    public function getCpfNaoFormatado()
+    {
+        return $this->limparCpf($this->cpf);    
+    }
+
     private function formatarCpf($value)
     {
         $CPF_LENGTH = 11;
@@ -65,7 +70,7 @@ class UserInfo extends Model
         }
 
         // no avatar, return blank avatar
-        return asset(theme()->getMediaUrlPath().'avatars/blank.png');
+        return asset(theme()->getMediaUrlPath() . 'avatars/blank.png');
     }
 
     /**

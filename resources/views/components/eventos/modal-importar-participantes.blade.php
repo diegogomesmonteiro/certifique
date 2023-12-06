@@ -7,8 +7,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div>
-                <a href="">
-                    <p class="text-center">Um modelo do arquivo ".csv" pode ser baixado clicando aqui.</p>
+                <a href="{{asset('modelo-participantes.xlsx')}}">
+                    <p class="text-center">Um modelo do arquivo ".xlsx" pode ser baixado clicando aqui.</p>
                 </a>
             </div>
             <form action="{{route('atividade-participantes.import')}}" method="POST" enctype="multipart/form-data">
@@ -25,7 +25,7 @@
                         <span class="d-block fw-semibold text-center">
                             <span class="text-dark fw-bold d-block fs-3">Selecione um arquivo para carregamento</span>
                             <span class="text-muted fw-semibold fs-6">
-                                Dessa forma você poderá carregar um arquivo ".csv" com os dados de vários participantes.
+                                Dessa forma você poderá carregar um arquivo com extensão .xlsx, .xls ou .csv com os dados de vários participantes.
                             </span>
                         </span>
                     </label>

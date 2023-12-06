@@ -8,7 +8,7 @@ return array(
         'layout'      => array(
             'page-title' => array(
                 'description' => true,
-                'breadcrumb'  => true,
+                'breadcrumb'  => false,
             ),
         ),
         'assets'      => array(
@@ -135,6 +135,30 @@ return array(
                 ),
             ), 
         ),
+    ),
+
+    'meus-certificados' => array(
+        'title'  => 'Eventos',
+        'layout' => array(
+            'toolbar' => array(
+                'display' => false,
+            ),
+        ),
+        '*' => array(
+            'layout' => array(
+                'toolbar' => array(
+                    'display' => false,
+                ),
+            ),
+        ),
+        'assets' => array(
+            'custom' => array(
+                'js' => array(
+                    'js\custom\pages\general\form.js',
+                    // 'js\custom\pages\general\formMultStep.js',
+                ),
+            ),
+        ), 
     ),
 
     // 'atividades' => array(

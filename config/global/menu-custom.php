@@ -136,7 +136,7 @@ return array(
                 'items' => array(
                     array(
                         'title'  => 'Certificados',
-                        'path'   => 'eventos',
+                        'path'   => 'meus-certificados',
                         'bullet' => '<span class="bullet bullet-dot"></span>',
                     ),
                 ),
