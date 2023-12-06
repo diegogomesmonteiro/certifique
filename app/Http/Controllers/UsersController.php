@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Enums\RolesEnum;
 use Illuminate\Http\Request;
 use App\Enums\PermissionsEnum;
+
 class UsersController extends Controller
 {
     /**
@@ -15,7 +16,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $user = User::orderBy('first_name')->get();
+        $user = User::whereNot('id', auth()->user()->id)
+            ->orderBy('first_name')->get();
         return view('pages.users.index', ['users' => $user]);
     }
 
@@ -100,10 +102,10 @@ class UsersController extends Controller
             session()->flash('danger', 'Você não pode excluir seu próprio usuário!');
             return redirect()->back();
         }
-        if($user->info){
+        if ($user->info) {
             $user->info->delete();
         }
-        if($user->delete()){
+        if ($user->delete()) {
             session()->flash('success', 'Usuário excluído com sucesso!');
         } else {
             session()->flash('danger', 'Erro ao excluir usuário!');

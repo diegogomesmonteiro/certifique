@@ -24,11 +24,13 @@
                             type="button" role="tab" aria-controls="config-certificados"
                             aria-selected="false">Configurações de Certificados</button>
                     </li>
+                    @if ($evento->configCertificados->isNotEmpty())
                     <li class="nav-item" role="presentation">
                         <button class="nav-link {{ $ativo == 'certificados' ? 'active' : '' }}" id="certificados-tab"
                             data-bs-toggle="tab" data-bs-target="#certificados" type="button" role="tab"
                             aria-controls="certificados" aria-selected="false">Certificados</button>
                     </li>
+                    @endif
                 @endif
             </ul>
 
@@ -38,7 +40,9 @@
                 @if ($atividades->isNotEmpty())
                     <x-eventos.tab-participantes :ativo="$ativo" :atividades="$atividades" />
                     <x-eventos.tab-config-certificados :ativo="$ativo" :evento="$evento" />
+                    @if ($evento->configCertificados->isNotEmpty())
                     <x-eventos.tab-certificados :ativo="$ativo" :evento="$evento" />
+                    @endif
                 @endif
             </div>
         </div>
