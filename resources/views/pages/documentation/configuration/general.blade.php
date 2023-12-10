@@ -35,7 +35,7 @@ return array(
 
     // Assets
     'assets'  => array(
-        'favicon' => 'media/logos/favicon.ico',
+        
         'fonts'   => array(
             'google' => array(
                 'Poppins:300,400,500,600,700',
@@ -62,7 +62,7 @@ return array(
 
         // Docs
         'docs'       => array(
-            'logo-path'  => 'logos/logo-1-dark.svg',
+            'logo-path'  => 'logos/almenara_horizontal.jpg',
             'logo-class' => 'h-15px',
         ),
 

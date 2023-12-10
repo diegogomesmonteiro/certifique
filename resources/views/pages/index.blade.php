@@ -1,6 +1,18 @@
 <x-base-layout>
-
     <!--begin::Row-->
+    <div class="row gy-5 g-xl-8">
+        <!--begin::Col-->
+        <div class="card col-xxl-4">
+            <div class="card-body text-center">
+                <h1>Bem vindo(a), {{auth()->user()->first_name}}</h1>
+                <p class="fs-4 fw-bold text-gray-400">Esse é o CertIFique, o seu sistema de gerenciamento de certificados.</p>
+            </div>
+
+        </div>
+        <!--end::Col-->
+    </div>
+    <!--end::Row-->
+    {{-- <!--begin::Row-->
     <div class="row gy-5 g-xl-8">
         <!--begin::Col-->
         <div class="col-xxl-4">
@@ -22,9 +34,9 @@
         </div>
         <!--end::Col-->
     </div>
-    <!--end::Row-->
+    <!--end::Row--> --}}
 
-    <!--begin::Row-->
+    {{-- <!--begin::Row-->
     <div class="row gy-5 gx-xl-8">
         <!--begin::Col-->
         <div class="col-xxl-4">
@@ -38,9 +50,9 @@
         </div>
         <!--end::Col-->
     </div>
-    <!--end::Row-->
+    <!--end::Row--> --}}
 
-    <!--begin::Row-->
+    {{-- <!--begin::Row-->
     <div class="row gy-5 g-xl-8">
         <!--begin::Col-->
         <div class="col-xl-4">
@@ -60,9 +72,9 @@
         </div>
         <!--end::Col-->
     </div>
-    <!--end::Row-->
+    <!--end::Row--> --}}
 
-    <!--begin::Row-->
+    {{-- <!--begin::Row-->
     <div class="row g-5 gx-xxl-8">
         <!--begin::Col-->
         <div class="col-xxl-4">
@@ -76,6 +88,6 @@
         </div>
         <!--end::Col-->
     </div>
-    <!--end::Row-->
+    <!--end::Row--> --}}
 
 </x-base-layout>

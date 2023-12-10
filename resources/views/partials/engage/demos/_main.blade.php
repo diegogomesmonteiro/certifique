@@ -89,7 +89,7 @@
 							</div>
 
 							<div class="text-nowrap">
-								<a href="https://keenthemes.com/contact/" class="btn btn-sm btn-success" target="_blank">Contact Us</a>
+								<a href="https://keenthemes.com/contact/" class="btn btn-sm btn-success" target="_blank">Contato</a>
 							</div>
 						</div>
 					</div>
