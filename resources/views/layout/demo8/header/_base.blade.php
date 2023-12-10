@@ -4,7 +4,7 @@
     <div class="header-brand">
         <!--begin::Logo-->
         <a href="{{ theme()->getPageUrl('') }}">
-            <img alt="Logo" src="{{ asset(theme()->getMediaUrlPath() . 'logos/logo-1-dark.svg') }}" class="h-25px h-lg-25px"/>
+            <img alt="Logo" src="{{ asset(theme()->getMediaUrlPath() . 'logos/almenara_horizontal.jpg') }}" class="h-25px h-lg-25px"/>
         </a>
         <!--end::Logo-->
 

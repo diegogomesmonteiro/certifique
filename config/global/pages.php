@@ -2,12 +2,15 @@
 
 return array(
     '' => array(
-        'title'       => 'Dashboard',
+        'title'       => 'CertIFique',
         'description' => '',
         'view'        => 'index',
         'layout'      => array(
+            'toolbar' => array(
+                'display' => false,
+            ),
             'page-title' => array(
-                'description' => true,
+                'description' => false,
                 'breadcrumb'  => false,
             ),
         ),

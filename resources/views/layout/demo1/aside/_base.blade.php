@@ -1,8 +1,8 @@
 @php
-    $logoFileName = 'logo-1-dark.svg';
+    $logoFileName = 'almenara_horizontal.jpg';
 
     if (theme()->getOption('layout', 'aside/theme') === 'light') {
-        $logoFileName = 'logo-1.svg';
+        $logoFileName = 'almenara_horizontal.jpg';
     }
 @endphp
 
@@ -23,7 +23,7 @@
     <div class="aside-logo flex-column-auto" id="kt_aside_logo">
         {{--begin::Logo--}}
         <a href="{{ theme()->getPageUrl('') }}">
-            <img alt="Logo" src="{{ asset(theme()->getMediaUrlPath() . 'logos/' . $logoFileName) }}" class="h-25px logo"/>
+            <img class="img-fluid" alt="Logo" src="{{ asset(theme()->getMediaUrlPath() . 'logos/' . $logoFileName) }}" class="h-25px logo"/>
         </a>
         {{--end::Logo--}}
 

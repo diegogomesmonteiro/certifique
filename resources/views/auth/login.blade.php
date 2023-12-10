@@ -8,28 +8,28 @@
         <div class="text-center mb-10">
             <!--begin::Title-->
             <h1 class="text-dark mb-3">
-                {{ __('Sign In to Metronic') }}
+                {{ __('CertIFique') }}
             </h1>
             <!--end::Title-->
 
             <!--begin::Link-->
             <div class="text-gray-400 fw-bold fs-4">
-                {{ __('New Here?') }}
+                {{ __('Novo por aqui?') }}
 
                 <a href="{{ theme()->getPageUrl('register') }}" class="link-primary fw-bolder">
-                    {{ __('Create an Account') }}
+                    {{ __('Criar conta') }}
                 </a>
             </div>
             <!--end::Link-->
         </div>
         <!--begin::Heading-->
 
-        <div class="mb-10 bg-light-info p-8 rounded"><div class="text-info"> Use account <strong>admin@demo.com</strong> and password <strong>demo</strong> to continue. </div></div>
+        {{-- <div class="mb-10 bg-light-info p-8 rounded"><div class="text-info"> Use account <strong>admin@demo.com</strong> and password <strong>demo</strong> to continue. </div></div> --}}
 
         <!--begin::Input group-->
         <div class="fv-row mb-10">
             <!--begin::Label-->
-            <label class="form-label fs-6 fw-bolder text-dark">{{ __('Email') }}</label>
+            <label class="form-label fs-6 fw-bolder text-dark">{{ __('E-mail') }}</label>
             <!--end::Label-->
 
             <!--begin::Input-->
@@ -43,13 +43,13 @@
             <!--begin::Wrapper-->
             <div class="d-flex flex-stack mb-2">
                 <!--begin::Label-->
-                <label class="form-label fw-bolder text-dark fs-6 mb-0">{{ __('Password') }}</label>
+                <label class="form-label fw-bolder text-dark fs-6 mb-0">{{ __('Senha') }}</label>
                 <!--end::Label-->
 
                 <!--begin::Link-->
                 @if (Route::has('password.request'))
                     <a href="{{ theme()->getPageUrl('password.request') }}" class="link-primary fs-6 fw-bolder">
-                        {{ __('Forgot Password ?') }}
+                        {{ __('Esqueceu a senha?') }}
                     </a>
             @endif
             <!--end::Link-->
@@ -66,7 +66,7 @@
         <div class="fv-row mb-10">
             <label class="form-check form-check-custom form-check-solid">
                 <input class="form-check-input" type="checkbox" name="remember"/>
-                <span class="form-check-label fw-bold text-gray-700 fs-6">{{ __('Remember me') }}
+                <span class="form-check-label fw-bold text-gray-700 fs-6">{{ __('Manter conectado') }}
             </span>
             </label>
         </div>
@@ -80,7 +80,7 @@
             </button>
             <!--end::Submit button-->
 
-            <!--begin::Separator-->
+            {{-- <!--begin::Separator-->
             <div class="text-center text-muted text-uppercase fw-bolder mb-5">or</div>
             <!--end::Separator-->
 
@@ -96,7 +96,7 @@
                 <img alt="Logo" src="{{ asset(theme()->getMediaUrlPath() . 'svg/brand-logos/facebook-4.svg') }}" class="h-20px me-3"/>
                 {{ __('Continue with Facebook') }}
             </a>
-            <!--end::Facebook link-->
+            <!--end::Facebook link--> --}}
         </div>
         <!--end::Actions-->
     </form>
