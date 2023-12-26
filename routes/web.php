@@ -2,22 +2,23 @@
 
 use Illuminate\Support\Str;
 use App\Enums\PermissionsEnum;
+use App\Mail\CertificadoNotificacao;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\EventoController;
-use Spatie\Permission\Contracts\Permission;
 use App\Http\Controllers\AtividadeController;
 use App\Http\Controllers\CertificadoController;
 use App\Http\Controllers\ParticipanteController;
 use App\Http\Controllers\Logs\AuditLogsController;
 use App\Http\Controllers\Logs\SystemLogsController;
 use App\Http\Controllers\Account\SettingsController;
+use App\Http\Controllers\MeusCertificadosController;
 use App\Http\Controllers\ConfigCertificadosController;
 use App\Http\Controllers\Auth\SocialiteLoginController;
 use App\Http\Controllers\AtividadeParticipantesController;
 use App\Http\Controllers\Documentation\ReferencesController;
-use App\Http\Controllers\MeusCertificadosController;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------

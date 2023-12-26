@@ -9,7 +9,9 @@ use App\Models\Certificado\ConfigCertificado;
 use App\Http\Requests\StoreCertificadoRequest;
 use App\Http\Requests\UpdateCertificadoRequest;
 use App\Http\Requests\PublicarCertificadoRequest;
+use App\Mail\CertificadoNotificacao;
 use Database\Factories\Certificado\CertificadoFactory;
+use Illuminate\Support\Facades\Mail;
 
 class CertificadoController extends Controller
 {
@@ -114,9 +116,12 @@ class CertificadoController extends Controller
                 'gerado_por_id' => Auth::id(),
             ];
         }, $participantes);
-        $criados = CertificadoFactory::factoryForModel(Certificado::class)->createMany($data);
-        if (!$criados) return $rotaDeRetorno->with('danger', 'Erro ao publicar certificado(s)!');
-        return $rotaDeRetorno->with('success', 'Certificado(s) publicado(s) com sucesso!');
+        $certificadosCriados = CertificadoFactory::factoryForModel(Certificado::class)->createMany($data);
+        if (!$certificadosCriados) return $rotaDeRetorno->with('danger', 'Erro ao publicar certificado(s)!');
+        foreach ($certificadosCriados as $certificado) {
+            Mail::queue(new CertificadoNotificacao($certificado));
+        }
+        return $rotaDeRetorno->with('success', 'Certificado(s) publicado(s) com sucesso! E-mail(s) estão sendo enviado(s) para o(s) participante(s)!');
     }
 
     public function alterarPublicacao(Request $request)
