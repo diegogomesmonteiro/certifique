@@ -10,7 +10,6 @@ use App\Http\Requests\StoreCertificadoRequest;
 use App\Http\Requests\UpdateCertificadoRequest;
 use App\Http\Requests\PublicarCertificadoRequest;
 use Database\Factories\Certificado\CertificadoFactory;
-use View;
 
 class CertificadoController extends Controller
 {
