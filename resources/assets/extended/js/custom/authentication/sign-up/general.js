@@ -109,10 +109,10 @@ var KTSignupGeneral = function () {
                         .then(function (response) {
                             // Show message popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
                             Swal.fire({
-                                text: "You have successfully registered! Please check your email for verification.",
+                                text: "Você foi cadastrado! Complete o seu cadastro para acessar seus certificados.",
                                 icon: "success",
                                 buttonsStyling: false,
-                                confirmButtonText: "Ok, got it!",
+                                confirmButtonText: "Continuar!",
                                 customClass: {
                                     confirmButton: "btn btn-primary"
                                 }

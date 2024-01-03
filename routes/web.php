@@ -49,7 +49,7 @@ Route::prefix('documentation')->group(function () {
     Route::get('getting-started/changelog', [PagesController::class, 'index']);
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'perfil_usuario_atualizado'])->group(function () {
 
     Route::prefix('users')->group(function () {
         Route::get('', [UsersController::class, 'index'])->name('users.index')
