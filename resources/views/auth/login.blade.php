@@ -21,6 +21,15 @@
                 </a>
             </div>
             <!--end::Link-->
+            <!--begin::Link-->
+            <div class="text-gray-400 fw-bold fs-4">
+                {{ __('Consultar certificado?') }}
+
+                <a href="{{ route('certificados.consulta-certificado') }}" class="link-primary fw-bolder">
+                    {{ __('Clique aqui') }}
+                </a>
+            </div>
+            <!--end::Link-->
         </div>
         <!--begin::Heading-->
 

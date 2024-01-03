@@ -109,7 +109,6 @@ Route::middleware(['auth', 'perfil_usuario_atualizado'])->group(function () {
             ->can(PermissionsEnum::GERENCIAR_EVENTOS->value);
         Route::delete('{certificado}', [CertificadoController::class, 'destroy'])->name('certificados.destroy')
             ->can(PermissionsEnum::GERENCIAR_EVENTOS->value);
-        Route::get('{certificado}/download', [CertificadoController::class, 'download'])->name('certificados.download');
     });
 
     Route::prefix('atividades')->group(function () {
@@ -146,6 +145,14 @@ Route::middleware(['auth', 'perfil_usuario_atualizado'])->group(function () {
         Route::resource('audit', AuditLogsController::class)->only(['index', 'destroy']);
     });
 });
+
+Route::prefix('certificados')->group(function () {
+    Route::get('consulta-certificado', [CertificadoController::class, 'consultaCertificado'])->name('certificados.consulta-certificado');
+    Route::post('/', [CertificadoController::class, 'show'])->name('certificados.show');
+    Route::get('{certificado}/download', [CertificadoController::class, 'download'])->name('certificados.download');    
+    Route::get('autenticacao/{autenticacao}', [CertificadoController::class, 'consultaAutenticacao'])->name('certificados.autenticacao');    
+});
+
 
 /**
  * Socialite login using Google service
