@@ -48,8 +48,11 @@
             ?>
         </div>
         <div class="verificador">
-            <font size="2"><a style="text-decoration: none; color: #1b1e21"
-                    href="https://eventos.ifnmg.edu.br/validar_certificado/{{ $autenticacao }}">https://eventos.ifnmg.edu.br/validar_certificado/{{ $autenticacao }}</a>
+            <font size="2">
+                <a style="text-decoration: none; color: #1b1e21" href={{ $url }} target="blank">
+                    <p style="padding: 0">Consulte a autenticidade: {{ $url }}</p>
+                    <p style="padding: 0">Código de autenticação: {{ $autenticacao }}</p>
+                </a>
             </font>
         </div>
     </div>

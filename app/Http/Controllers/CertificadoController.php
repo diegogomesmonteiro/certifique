@@ -12,6 +12,7 @@ use App\Http\Requests\PublicarCertificadoRequest;
 use App\Mail\CertificadoNotificacao;
 use Database\Factories\Certificado\CertificadoFactory;
 use Illuminate\Support\Facades\Mail;
+use View;
 
 class CertificadoController extends Controller
 {
@@ -52,9 +53,39 @@ class CertificadoController extends Controller
      * @param  \App\Models\Certificado\Certificado  $certificado
      * @return \Illuminate\Http\Response
      */
-    public function show(Certificado $certificado)
+    public function show(Request $request)
     {
-        //
+        $autenticacao = $request->autenticacao;
+        $certificado = Certificado::where('autenticacao', $autenticacao)
+        ->where('publicado', true)
+        ->first();
+        if (!$certificado) {
+            return redirect()->route('certificados.consulta-certificado')->with('danger', 'Certificado não encontrado!');
+        }
+        $participante = $certificado->participante;
+        $evento = $certificado->configCertificado->evento;
+        return view('pages.eventos.certificados.show', [
+            'certificado' => $certificado,
+            'participante' => $participante,
+            'evento' => $evento,
+        ]);
+    }
+
+    public function consultaAutenticacao(string $autenticacao)
+    {
+        $certificado = Certificado::where('autenticacao', $autenticacao)
+        ->where('publicado', true)
+        ->first();
+        if (!$certificado) {
+            return redirect()->route('certificados.consulta-certificado')->with('danger', 'Certificado não encontrado!');
+        }
+        $participante = $certificado->participante;
+        $evento = $certificado->configCertificado->evento;
+        return view('pages.eventos.certificados.show', [
+            'certificado' => $certificado,
+            'participante' => $participante,
+            'evento' => $evento,
+        ]);
     }
 
     /**
@@ -152,8 +183,14 @@ class CertificadoController extends Controller
             'imagem' => $configCertificado->getPathLayout(),
             'texto' => $texto,
             'autenticacao' => $certificado->autenticacao,
+            'url' => route('certificados.consulta-certificado'),
         ])
         ->setPaper('a4', 'landscape');
         return $pdf->stream('certificado.pdf');
+    }
+
+    public function consultaCertificado()
+    {
+        return view('pages.eventos.certificados.consulta-certificado');
     }
 }
