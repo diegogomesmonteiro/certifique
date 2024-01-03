@@ -12,7 +12,6 @@ use App\Http\Requests\PublicarCertificadoRequest;
 use App\Mail\CertificadoNotificacao;
 use Database\Factories\Certificado\CertificadoFactory;
 use Illuminate\Support\Facades\Mail;
-use View;
 
 class CertificadoController extends Controller
 {
