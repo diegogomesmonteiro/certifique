@@ -18,10 +18,12 @@ class MeusCertificadosController extends Controller
         $dadosParticipante = auth()->user()->participante;
         if(!$dadosParticipante){
             session()->flash('danger', 'Você não está cadastrado como participante em nenhum evento!');
+            return redirect('/');
         }
         $eventos = $dadosParticipante->getEventos();
         if($eventos->count() == 0){
             session()->flash('danger', 'Você não está cadastrado como participante em nenhum evento!');
+            return redirect()->back();
         }
         return view('pages.meus-certificados.index', ['eventos' => $eventos]);
     }

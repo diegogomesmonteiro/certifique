@@ -36,45 +36,34 @@ class SettingsController extends Controller
      */
     public function update(SettingsInfoRequest $request)
     {
+        
         $usuario = User::find($request->user_id);
-        // save user name
         $validated = $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name'  => 'required|string|max:255',
         ]);
         $usuario->update($validated);
-
-        // save on user info
+        
         $info = UserInfo::where('user_id', $usuario->id)->first();
-
         if ($info === null) {
-            // create new model
             $info = new UserInfo();
+            $info->user()->associate($usuario);
         }
-
-        // attach this info to the current user
-        $info->user()->associate($usuario);
-
         foreach ($request->only(array_keys($request->rules())) as $key => $value) {
             if (is_array($value)) {
                 $value = serialize($value);
             }
             $info->$key = $value;
         }
-
-        // include to save avatar
         if ($avatar = $this->upload()) {
             $info->avatar = $avatar;
         }
-
         if ($request->boolean('avatar_remove')) {
             Storage::delete($info->avatar);
             $info->avatar = null;
         }
-
-        $info->update();
-
-        return redirect()->intended('account/settings');
+        $info->save();
+        return redirect()->intended('account/settings')->with('success', 'Informações atualizadas com sucesso!');
     }
 
     /**

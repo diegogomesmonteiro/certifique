@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\EventoController;
-use Spatie\Permission\Contracts\Permission;
 use App\Http\Controllers\AtividadeController;
 use App\Http\Controllers\CertificadoController;
 use App\Http\Controllers\ParticipanteController;
@@ -48,7 +47,7 @@ Route::prefix('documentation')->group(function () {
     Route::get('getting-started/changelog', [PagesController::class, 'index']);
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'perfil_usuario_atualizado'])->group(function () {
 
     Route::prefix('users')->group(function () {
         Route::get('', [UsersController::class, 'index'])->name('users.index')
