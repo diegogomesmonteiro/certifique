@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Str;
 use App\Enums\PermissionsEnum;
-use App\Mail\CertificadoNotificacao;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\UsersController;
@@ -18,7 +17,6 @@ use App\Http\Controllers\ConfigCertificadosController;
 use App\Http\Controllers\Auth\SocialiteLoginController;
 use App\Http\Controllers\AtividadeParticipantesController;
 use App\Http\Controllers\Documentation\ReferencesController;
-use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +48,8 @@ Route::prefix('documentation')->group(function () {
 });
 
 Route::middleware(['auth', 'perfil_usuario_atualizado'])->group(function () {
+
+    Route::get('/', [PagesController::class, 'index'])->name('dashboard');
 
     Route::prefix('users')->group(function () {
         Route::get('', [UsersController::class, 'index'])->name('users.index')

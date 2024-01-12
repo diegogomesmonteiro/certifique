@@ -133,7 +133,7 @@ return array(
                 'custom' => array(
                     'js' => array(
                         'js\custom\pages\general\form.js',
-                        // 'js\custom\pages\general\formMultStep.js',
+                        'js\custom\pages\general\formMultStep.js',
                     ),
                 ),
             ), 
@@ -258,6 +258,11 @@ return array(
         ),
         '*' => array(
             'title' => 'Gerenciar Usuários',
+            'layout' => array(
+                'toolbar' => array(
+                    'display' => false,
+                ),
+            ),
             'assets' => array(
                 'custom' => array(
                     'js' => array(

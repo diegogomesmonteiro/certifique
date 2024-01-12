@@ -23,11 +23,11 @@
                 <table class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
                     <!--begin::Table head-->
                     <thead>
-                        <tr class="fw-bolder text-muted">
+                        <tr class="fw-bolder text-muted text-center">
                             <th class="min-w-150px">Nome</th>
                             <th class="min-w-140px">CPF</th>
                             <th class="min-w-120px">Função</th>
-                            <th class="min-w-100px text-end">Ação</th>
+                            <th class="min-w-100px">Ação</th>
                         </tr>
                     </thead>
                     <!--end::Table head-->
@@ -35,12 +35,11 @@
                     <!--begin::Table body-->
                     <tbody>
                         @foreach ($users as $user)
-                            <tr>
+                            <tr class="text-center">
                                 <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="d-flex justify-content-start flex-column">
-                                            <a href="#"
-                                                class="text-dark fw-bolder text-hover-primary fs-6">{{ $user->name }}</a>
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <div class="d-flex flex-column">
+                                            <span class="text-dark fw-bolder text-hover-primary fs-6">{{ $user->name }}</span>
 
                                             <span
                                                 class="text-muted fw-bold text-muted d-block fs-7">{{ $user->email }}</span>

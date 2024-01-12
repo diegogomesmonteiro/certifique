@@ -358,8 +358,8 @@ i<!--begin::Basic info-->
             <!--begin::Actions-->
 
             <div class="card-footer d-flex justify-content-end py-6 px-9">
-                <button type="reset"
-                    class="btn btn-danger btn-active-light-primary me-2">{{ __('Cancelar') }}</button>
+                <a href="{{ request()->routeIs('users.edit') ? route('users.index') : route('dashboard') }}"
+                    class="btn btn-danger btn-active-light-primary me-2">{{ __('Cancelar') }}</a>
 
                 <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">
                     @include('partials.general._button-indicator', [
