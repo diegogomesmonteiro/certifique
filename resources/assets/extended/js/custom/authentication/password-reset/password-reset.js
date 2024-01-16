@@ -17,10 +17,10 @@ var KTPasswordResetGeneral = function () {
                     'email': {
                         validators: {
                             notEmpty: {
-                                message: 'Email address is required'
+                                message: 'E-mail é obrigatório'
                             },
                             emailAddress: {
-                                message: 'The value is not a valid email address'
+                                message: 'O e-mail informado não é válido'
                             }
                         }
                     }
@@ -55,10 +55,10 @@ var KTPasswordResetGeneral = function () {
                         .then(function (response) {
                             // Show message popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
                             Swal.fire({
-                                text: "Please check your email to proceed with the password reset.",
+                                text: "Um e-mail de redefinição de senha foi enviado para o endereço de e-mail fornecido.",
                                 icon: "success",
                                 buttonsStyling: false,
-                                confirmButtonText: "Ok, got it!",
+                                confirmButtonText: "Continuar",
                                 customClass: {
                                     confirmButton: "btn btn-primary"
                                 }
@@ -82,7 +82,7 @@ var KTPasswordResetGeneral = function () {
                                     text: dataMessage,
                                     icon: "error",
                                     buttonsStyling: false,
-                                    confirmButtonText: "Ok, got it!",
+                                    confirmButtonText: "Continuar",
                                     customClass: {
                                         confirmButton: "btn btn-primary"
                                     }
@@ -100,10 +100,10 @@ var KTPasswordResetGeneral = function () {
                 } else {
                     // Show error popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
                     Swal.fire({
-                        text: "Sorry, looks like there are some errors detected, please try again.",
+                        text: "Desculpe, parece que encontramos alguns erros, verifique-os e tente novamente.",
                         icon: "error",
                         buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
+                        confirmButtonText: "Continuar",
                         customClass: {
                             confirmButton: "btn btn-primary"
                         }

@@ -17,20 +17,20 @@ var KTSigninGeneral = function () {
                     'email': {
                         validators: {
                             notEmpty: {
-                                message: 'Email address is required'
+                                message: 'E-mail é obrigatório'
                             },
                             emailAddress: {
-                                message: 'The value is not a valid email address'
+                                message: 'O valor não é um e-mail válido'
                             }
                         }
                     },
                     'password': {
                         validators: {
                             notEmpty: {
-                                message: 'The password is required'
+                                message: 'A senha é obrigatória'
                             },
                             callback: {
-                                message: 'Please enter valid password',
+                                message: 'Entre com a senha válida',
                             }
                         }
                     }
@@ -94,7 +94,7 @@ var KTSigninGeneral = function () {
                                     text: dataMessage,
                                     icon: "error",
                                     buttonsStyling: false,
-                                    confirmButtonText: "Ok, got it!",
+                                    confirmButtonText: "Continuar",
                                     customClass: {
                                         confirmButton: "btn btn-primary"
                                     }
@@ -112,10 +112,10 @@ var KTSigninGeneral = function () {
                 } else {
                     // Show error popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
                     Swal.fire({
-                        text: "Sorry, looks like there are some errors detected, please try again.",
+                        text: "Desculpe, parece que foram detectados alguns erros. Tente novamente.",
                         icon: "error",
                         buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
+                        confirmButtonText: "Continuar",
                         customClass: {
                             confirmButton: "btn btn-primary"
                         }

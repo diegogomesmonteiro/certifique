@@ -18,34 +18,34 @@ var KTSignupGeneral = function () {
                     'first_name': {
                         validators: {
                             notEmpty: {
-                                message: 'First Name is required'
+                                message: 'Primeiro Nome é obrigatório'
                             }
                         }
                     },
                     'last_name': {
                         validators: {
                             notEmpty: {
-                                message: 'Last Name is required'
+                                message: 'Sobrenome é obrigatório'
                             }
                         }
                     },
                     'email': {
                         validators: {
                             notEmpty: {
-                                message: 'Email address is required'
+                                message: 'E-mail é obrigatório'
                             },
                             emailAddress: {
-                                message: 'The value is not a valid email address'
+                                message: 'O e-mail informado não é válido'
                             }
                         }
                     },
                     'password': {
                         validators: {
                             notEmpty: {
-                                message: 'The password is required'
+                                message: 'Senha é obrigatória'
                             },
                             callback: {
-                                message: 'Please enter valid password',
+                                message: 'Entre com a senha correta',
                                 callback: function (input) {
                                     if (input.value.length > 0) {
                                         return validatePassword();
@@ -57,20 +57,20 @@ var KTSignupGeneral = function () {
                     'confirm-password': {
                         validators: {
                             notEmpty: {
-                                message: 'The password confirmation is required'
+                                message: 'A confirmação da senha é obrigatória'
                             },
                             identical: {
                                 compare: function () {
                                     return form.querySelector('[name="password"]').value;
                                 },
-                                message: 'The password and its confirm are not the same'
+                                message: 'A senha e a confirmação da senha não são iguais'
                             }
                         }
                     },
                     'toc': {
                         validators: {
                             notEmpty: {
-                                message: 'You must accept the terms and conditions'
+                                message: 'Você deve aceitar os termos e condições'
                             }
                         }
                     }
@@ -138,7 +138,7 @@ var KTSignupGeneral = function () {
                                     text: dataMessage,
                                     icon: "error",
                                     buttonsStyling: false,
-                                    confirmButtonText: "Ok, got it!",
+                                    confirmButtonText: "Continuar",
                                     customClass: {
                                         confirmButton: "btn btn-primary"
                                     }
@@ -156,10 +156,10 @@ var KTSignupGeneral = function () {
                 } else {
                     // Show error popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
                     Swal.fire({
-                        text: "Sorry, looks like there are some errors detected, please try again.",
+                        text: "Desculpe, parece que foram detectados alguns erros. Tente novamente.",
                         icon: "error",
                         buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
+                        confirmButtonText: "Continuar",
                         customClass: {
                             confirmButton: "btn btn-primary"
                         }
