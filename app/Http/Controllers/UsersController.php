@@ -17,7 +17,7 @@ class UsersController extends Controller
     public function index()
     {
         $user = User::whereNot('id', auth()->user()->id)
-            ->orderBy('first_name')->get();
+            ->orderBy('first_name')->paginate(10);
         return view('pages.users.index', ['users' => $user]);
     }
 

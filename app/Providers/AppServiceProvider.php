@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Core\Adapters\Theme;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -39,6 +40,7 @@ class AppServiceProvider extends ServiceProvider
         $theme->initConfig();
 
         bootstrap()->run();
+        Paginator::useBootstrapFive();
 
         if (isRTL()) {
             // RTL html attributes

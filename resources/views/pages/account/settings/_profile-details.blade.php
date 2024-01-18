@@ -1,4 +1,4 @@
-i<!--begin::Basic info-->
+<!--begin::Basic info-->
 <div class="card {{ $class }}">
     <!--begin::Card header-->
     <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse"

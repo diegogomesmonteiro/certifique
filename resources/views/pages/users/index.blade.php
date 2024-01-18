@@ -39,7 +39,8 @@
                                 <td>
                                     <div class="d-flex align-items-center justify-content-center">
                                         <div class="d-flex flex-column">
-                                            <span class="text-dark fw-bolder text-hover-primary fs-6">{{ $user->name }}</span>
+                                            <span
+                                                class="text-dark fw-bolder text-hover-primary fs-6">{{ $user->name }}</span>
 
                                             <span
                                                 class="text-muted fw-bold text-muted d-block fs-7">{{ $user->email }}</span>
@@ -66,7 +67,8 @@
                                 </td>
 
                                 <td class="d-flex gap-2 justify-content-center">
-                                    <a id="editar" href="{{route('users.edit', $user)}}" class="btn btn-sm btn-primary">
+                                    <a id="editar" href="{{ route('users.edit', $user) }}"
+                                        class="btn btn-sm btn-primary">
                                         <i class="bi bi-pencil-square"></i>
                                     </a>
 
@@ -83,6 +85,9 @@
                     </tbody>
                     <!--end::Table body-->
                 </table>
+                <div class="py-4">
+                    {{ $users->onEachSide(1)->links() }}
+                </div>
                 <!--end::Table-->
             </div>
             <!--end::Table container-->
