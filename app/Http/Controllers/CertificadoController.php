@@ -151,7 +151,7 @@ class CertificadoController extends Controller
         foreach ($certificadosCriados as $certificado) {
             Mail::queue(new CertificadoNotificacao($certificado));
         }
-        return $rotaDeRetorno->with('success', 'Certificado(s) publicado(s) com sucesso! E-mail(s) estão sendo enviado(s) para o(s) participante(s)!');
+        return $rotaDeRetorno->with('success', 'Certificado(s) publicado(s) com sucesso! E-mail(s) está(ão) sendo enviado(s) para o(s) participante(s)!');
     }
 
     public function alterarPublicacao(Request $request)

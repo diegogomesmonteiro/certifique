@@ -98,8 +98,8 @@
                                         @foreach ($certificados as $certificado)
                                             <tr>
                                                 <td>{{ $certificado->configCertificado->nome }}</td>
-                                                <td>{{ $certificado->created_at->format('d/m/Y') }}h</td>
-                                                <td>{{ $certificado->geradoPor->first_name }}h</td>
+                                                <td>{{ $certificado->created_at->format('d/m/Y') }}</td>
+                                                <td>{{ $certificado->geradoPor->first_name }}</td>
                                                 <td>
                                                     <a id="download"
                                                         target="_blank"
