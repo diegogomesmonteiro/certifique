@@ -19,10 +19,10 @@ class DatabaseSeeder extends Seeder
             UsersSeeder::class,
             AtividadeTipoSeeder::class,
             PerfilSeeder::class,
-            EventoSeeder::class,
-            AtividadeSeeder::class,
-            ParticipanteSeeder::class,
-            AtividadeParticipanteSeeder::class,
+            // EventoSeeder::class,
+            // AtividadeSeeder::class,
+            // ParticipanteSeeder::class,
+            // AtividadeParticipanteSeeder::class,
         ]);
     }
 }

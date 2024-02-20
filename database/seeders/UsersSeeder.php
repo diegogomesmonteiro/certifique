@@ -19,34 +19,34 @@ class UsersSeeder extends Seeder
     public function run(Generator $faker)
     {
         $superAdmin = User::create([
-            'first_name'        => 'Diego',
-            'last_name'         => 'Gomes Monteiro',
-            'email'             => 'admin@ifnmg.edu.br',
+            'first_name'        => 'Super',
+            'last_name'         => 'Super Administrador',
+            'email'             => 'super_admin@ifnmg.edu.br',
             'password'          => Hash::make('teste@123'),
             'email_verified_at' => now(),
         ]);
         $superAdmin->assignRole([
             RolesEnum::SUPER_ADMIN->value,
         ]);
-        $this->addDummyInfo($faker, $superAdmin);
+        // $this->addDummyInfo($faker, $superAdmin);
 
-        $admin = User::create([
-            'first_name'        => $faker->firstName,
-            'last_name'         => $faker->lastName,
-            'email'             => 'demo@demo.com',
-            'password'          => Hash::make('demo'),
-            'email_verified_at' => now(),
-        ]);
-        $admin->assignRole([
-            RolesEnum::ADMIN->value,
-        ]);
-        $this->addDummyInfo($faker, $admin);
+        // $admin = User::create([
+        //     'first_name'        => $faker->firstName,
+        //     'last_name'         => $faker->lastName,
+        //     'email'             => 'demo@demo.com',
+        //     'password'          => Hash::make('demo'),
+        //     'email_verified_at' => now(),
+        // ]);
+        // $admin->assignRole([
+        //     RolesEnum::ADMIN->value,
+        // ]);
+        // $this->addDummyInfo($faker, $admin);
 
 
-        User::factory(100)->create()->each(function (User $user) use ($faker) {
-            $user->assignRole(RolesEnum::USER->value);
-            $this->addDummyInfo($faker, $user);
-        });
+        // User::factory(100)->create()->each(function (User $user) use ($faker) {
+        //     $user->assignRole(RolesEnum::USER->value);
+        //     $this->addDummyInfo($faker, $user);
+        // });
     }
 
     private function addDummyInfo(Generator $faker, User $user)
