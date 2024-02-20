@@ -84,3 +84,8 @@ Happy coding with Metronic!
 14. Start the localhost server:
     
         php artisan serve
+
+
+14. Realizar login inicial com as credenciais:
+    E-mail: super_admin@ifnmg.edu.br
+    Senha: teste@123
