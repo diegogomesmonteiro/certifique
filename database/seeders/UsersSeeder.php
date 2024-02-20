@@ -22,7 +22,7 @@ class UsersSeeder extends Seeder
             'first_name'        => 'Diego',
             'last_name'         => 'Gomes Monteiro',
             'email'             => 'admin@ifnmg.edu.br',
-            'password'          => Hash::make('demo'),
+            'password'          => Hash::make('teste@123'),
             'email_verified_at' => now(),
         ]);
         $superAdmin->assignRole([

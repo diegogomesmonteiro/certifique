@@ -105,7 +105,8 @@ class AtividadeParticipantesController extends Controller
     {
         $file = $request->file('file');
         $path = $file->store('temporario/importacao');
-        Excel::import(new AtividadeParticipanteImport, $path);
+        $eventoId = $request->evento_id_import;
+        Excel::import(new AtividadeParticipanteImport($eventoId), $path);
         Storage::delete($path);
         return redirect()->back()->with('success', 'Importação concluída.');
     }

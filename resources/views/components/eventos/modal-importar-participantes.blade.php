@@ -12,6 +12,7 @@
                 </a>
             </div>
             <form action="{{route('atividade-participantes.import')}}" method="POST" enctype="multipart/form-data">
+                <input type="text" name="evento_id_import" id="evento_id_import" hidden value="{{$evento->id}}">
                 <div class="modal-body">
                     @csrf
                     <input type="file" class="btn-check" name="file" required  id="btn-participantes-import"/>

@@ -25,6 +25,10 @@ class StoreAtividadeParticipanteImportRequest extends FormRequest
     {
         // dd(request()->file->getClientOriginalExtension());
         return [
+            'evento_id_import' => [
+                "required",
+                "exists:eventos,id"
+            ],
             'file' =>[
                 "required",
                 "mimes:xlsx,xls,csv"

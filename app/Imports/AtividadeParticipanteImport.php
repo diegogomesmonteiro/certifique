@@ -2,6 +2,7 @@
 
 namespace App\Imports;
 
+use App\Models\Evento;
 use App\Models\Perfil;
 use App\Models\Atividade;
 use App\Models\Participante;
@@ -11,6 +12,13 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
 class AtividadeParticipanteImport implements ToModel, WithHeadingRow
 {
+
+    private string $eventoId;
+
+    public function __construct(string $eventoId) {
+        $this->eventoId = $eventoId;
+    }
+
     /**
     * @param array $row
     *
@@ -18,7 +26,9 @@ class AtividadeParticipanteImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
-        $atividade = Atividade::where('nome', $row['atividade'])->first();
+        $atividade = Atividade::where('nome', $row['atividade'])
+            ->where('evento_id', $this->eventoId)
+            ->first();
         $participante = Participante::where('cpf', $row['cpf'])->first();
         $perfil = Perfil::where('nome', $row['modo_de_participacao'])->first();
         
